@@ -1,3 +1,3 @@
 namespace Estancia.Dominio;
 
-public enum ESexo { MACHO, HEMBRA }
+public enum ESexo { Macho, Hembra }

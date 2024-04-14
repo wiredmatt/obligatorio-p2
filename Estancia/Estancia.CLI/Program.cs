@@ -6,11 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Sistema sistema = Sistema.Instancia;
-
         bool salir = false;
-        int opcion = 0;
-
         while (!salir)
         {
             Console.Clear();
@@ -21,6 +17,7 @@ class Program
             Console.WriteLine("4. Alta de bovinos");
             Console.WriteLine("0. Salir");
 
+            int opcion;
             try
             {
                 opcion = Int32.Parse(Console.ReadLine());
@@ -35,12 +32,12 @@ class Program
             switch (opcion)
             {
                 case 1:
-                    sistema.ListarAnimales();
+                    ListarAnimales();
                     break;
                 case 2:
                     int hectareas = 0; // TODO: Leer de consola, validar que sea un número
                     int capacidad = 0;
-                    sistema.BuscarPotreros(hectareas, capacidad);
+                    Sistema.Instancia.BuscarPotreros(hectareas, capacidad);
                     break;
                 case 3:
                     double precio = 0;
@@ -58,6 +55,21 @@ class Program
             }
 
             Console.ReadKey();
+        }
+    }
+
+    public static void ListarAnimales()
+    {
+        Console.Clear();
+        Console.WriteLine("Listado de animales:");
+        Console.WriteLine("---------------------------------------------------");
+        Console.WriteLine("| Caravana  |  Tipo  |  Sexo  |  Raza  |    Peso    |");
+        Console.WriteLine("---------------------------------------------------");
+        foreach (Animal a in Sistema.Instancia.Animales)
+        {
+            string animalStr = a.ToString();
+            Console.WriteLine(animalStr);
+            Console.WriteLine(new string('-', animalStr.Length));
         }
     }
 }

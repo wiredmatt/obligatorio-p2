@@ -94,4 +94,9 @@ public abstract class Animal
     public abstract double GetPrecioVenta();
 
     public abstract string GetTipo();
+
+    public override string ToString()
+    {
+        return $"| #{ID} | {GetTipo()} | {Sexo} | {Raza} | {Peso}kg |";
+    }
 }

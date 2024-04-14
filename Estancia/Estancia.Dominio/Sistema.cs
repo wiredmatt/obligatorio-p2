@@ -26,11 +26,6 @@ public class Sistema
         Precarga();
     }
 
-    private void Precarga()
-    {
-        return;
-    }
-
     public void AltaCapataz(Capataz c)
     {
         c.Validar();
@@ -84,5 +79,15 @@ public class Sistema
     public static void EstablecerPrecioLana(double precio)
     {
         Ovino.PrecioKgLana = precio;
+    }
+
+
+    private void Precarga()
+    {
+        Bovino b1 = new Bovino("12345678", "Angus", ESexo.Macho, new DateTime(2019, 1, 1), 1000, 100, 500, false, EAlimentacion.Pastura);
+        Bovino b2 = new Bovino("87654321", "Angus", ESexo.Hembra, new DateTime(2019, 5, 4), 1000, 100, 500, true, EAlimentacion.Grano);
+
+        AltaBovino(b1);
+        AltaBovino(b2);
     }
 }
