@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Estancia.CLI/1.0.0": {
+        "dependencies": {
+          "Estancia.Dominio": "1.0.0"
+        },
+        "runtime": {
+          "Estancia.CLI.dll": {}
+        }
+      },
+      "Estancia.Dominio/1.0.0": {
+        "runtime": {
+          "Estancia.Dominio.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Estancia.CLI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Estancia.Dominio/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

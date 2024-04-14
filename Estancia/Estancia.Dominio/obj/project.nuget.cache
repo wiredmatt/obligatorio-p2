@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "209J0Y55oqGqMKCy8rN2g27mog+SG+cIM4cmfMGYYYMOBZ9NyScfLu7jW+PpEdpPT+hwdtnIK3+v2fr/P4y/Hg==",
+  "success": true,
+  "projectFilePath": "/home/matt/repos/obligatorio-p2/Estancia/Estancia.Dominio/Estancia.Dominio.csproj",
+  "expectedPackageFiles": [
+    "/home/matt/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.3/microsoft.aspnetcore.app.ref.8.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

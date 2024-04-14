@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estancia.CLI", "Estancia.CLI\Estancia.CLI.csproj", "{2FFD3BEB-B246-42EE-B8EA-B25537A3A9BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estancia.Dominio", "Estancia.Dominio\Estancia.Dominio.csproj", "{E0DE78ED-72E7-49F0-BF27-5FA679312DDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FFD3BEB-B246-42EE-B8EA-B25537A3A9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FFD3BEB-B246-42EE-B8EA-B25537A3A9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FFD3BEB-B246-42EE-B8EA-B25537A3A9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FFD3BEB-B246-42EE-B8EA-B25537A3A9BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0DE78ED-72E7-49F0-BF27-5FA679312DDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0DE78ED-72E7-49F0-BF27-5FA679312DDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0DE78ED-72E7-49F0-BF27-5FA679312DDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0DE78ED-72E7-49F0-BF27-5FA679312DDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
