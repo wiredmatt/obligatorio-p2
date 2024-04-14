@@ -44,7 +44,7 @@ class Program
                     break;
                 case 3:
                     double precio = 0;
-                    sistema.EstablecerPrecioLana(precio);
+                    Sistema.EstablecerPrecioLana(precio);
                     break;
                 case 4:
                     // todo
