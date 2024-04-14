@@ -25,4 +25,16 @@ public class Sistema
     {
         return;
     }
+
+    public void ListarAnimales()
+    {
+    }
+
+    public void BuscarPotreros(int hectareas, int capacidad)
+    {
+    }
+
+    public void EstablecerPrecioLana(double precio)
+    {
+    }
 }
