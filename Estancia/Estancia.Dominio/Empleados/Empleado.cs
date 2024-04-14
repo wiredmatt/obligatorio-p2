@@ -28,7 +28,7 @@ public abstract class Empleado
         FechaIngreso = fechaIngreso;
     }
 
-    public void Validar()
+    public virtual void Validar()
     {
         List<string> errores = new List<string>();
 
@@ -65,4 +65,6 @@ public abstract class Empleado
 
         return;
     }
+
+    public abstract string GetTipo();
 }

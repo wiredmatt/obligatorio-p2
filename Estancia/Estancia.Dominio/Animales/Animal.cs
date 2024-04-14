@@ -39,7 +39,7 @@ public abstract class Animal
         Vacunaciones.Add(vacunacion);
     }
 
-    public void Validar()
+    public virtual void Validar()
     {
         List<string> errores = new List<string>();
 
@@ -92,4 +92,6 @@ public abstract class Animal
     }
 
     public abstract double GetPrecioVenta();
+
+    public abstract string GetTipo();
 }

@@ -2,29 +2,34 @@ namespace Estancia.Dominio;
 
 public class Capataz : Empleado
 {
-    public List<Peon> PeonesACargo { get; private set; } = new List<Peon>();
+    public int CantidadPeones { get; set; }
 
     public Capataz() { }
 
-    public Capataz(string mail, string contrasena, string nombre, DateTime fechaIngreso) : base(mail, contrasena, nombre, fechaIngreso)
+    public Capataz(string mail, string contrasena, string nombre, DateTime fechaIngreso, int cantidadPeones) : base(mail, contrasena, nombre, fechaIngreso)
     {
+        CantidadPeones = cantidadPeones;
     }
 
-    public int GetCantidadDePeones()
+    public override string GetTipo()
     {
-        return PeonesACargo.Count;
+        return "Capataz";
     }
 
-    public void AgregarPeonACargo(Peon peon)
+    public override void Validar()
     {
-        foreach (Peon p in PeonesACargo)
+        base.Validar();
+
+        List<string> errores = new List<string>();
+
+        if (CantidadPeones < 0)
         {
-            if (p.ID == peon.ID)
-            {
-                return;
-            }
+            errores.Add("La cantidad de peones no puede ser negativa");
         }
 
-        PeonesACargo.Add(peon);
+        if (errores.Count > 0)
+        {
+            throw new ErrorDeValidacion(errores);
+        }
     }
 }

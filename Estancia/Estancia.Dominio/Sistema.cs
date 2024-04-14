@@ -4,10 +4,8 @@ public class Sistema
 {
     private static Sistema instancia;
 
-    public List<Capataz> Capataces { get; private set; } = new List<Capataz>();
-    public List<Peon> Peones { get; private set; } = new List<Peon>();
-    public List<Bovino> Bovinos { get; private set; } = new List<Bovino>();
-    public List<Ovino> Ovinos { get; private set; } = new List<Ovino>();
+    public List<Empleado> Empleados { get; private set; } = new List<Empleado>();
+    public List<Animal> Animales { get; private set; } = new List<Animal>();
     public List<Potrero> Potreros { get; private set; } = new List<Potrero>();
     public List<Vacuna> Vacunas { get; private set; } = new List<Vacuna>();
 
@@ -33,24 +31,27 @@ public class Sistema
         return;
     }
 
-    public List<Animal> ListarAnimales()
+    public void AltaCapataz(Capataz c)
     {
-        List<Animal> animales = [.. Bovinos, .. Ovinos];
+        c.Validar();
+        Empleados.Add(c);
+    }
 
-        animales.Sort(); // TODO: sort criteria?
-
-        return animales;
+    public void AltaPeon(Peon p)
+    {
+        p.Validar();
+        Empleados.Add(p);
     }
 
     public void AltaOvino(Ovino o)
     {
         o.Validar();
-        Ovinos.Add(o);
+        Animales.Add(o);
     }
     public void AltaBovino(Bovino b)
     {
         b.Validar();
-        Bovinos.Add(b);
+        Animales.Add(b);
     }
 
     public void AltaPotrero(Potrero p)

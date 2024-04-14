@@ -16,15 +16,16 @@ public class Peon : Empleado
     public void AltaTarea(Tarea tarea)
     {
         tarea.Validar();
-
-        foreach (Tarea t in Tareas)
-        {
-            if (t.ID == tarea.ID)
-            {
-                return;
-            }
-        }
-
         Tareas.Add(tarea);
+    }
+
+    public override string GetTipo()
+    {
+        return "Peon";
+    }
+
+    public override void Validar()
+    {
+        base.Validar();
     }
 }

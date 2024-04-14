@@ -16,4 +16,9 @@ public class Bovino : Animal
     {
         return 0;
     }
+
+    public override string GetTipo()
+    {
+        return "Bovino";
+    }
 }
