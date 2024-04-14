@@ -31,6 +31,10 @@ public abstract class Animal
 
     public void Vacunar(Vacuna vacuna, DateTime fecha)
     {
+        if (fecha < FechaNacimiento)
+        {
+            throw new ErrorDeValidacion("La fecha de vacunación no puede ser anterior a la fecha de nacimiento del Animal");
+        }
         Vacunacion vacunacion = new Vacunacion(vacuna, fecha);
         Vacunaciones.Add(vacunacion);
     }
