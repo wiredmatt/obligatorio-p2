@@ -24,11 +24,6 @@ public class ErrorDeValidacion : Exception
         string mensajeFinal = "-------------------\n";
         mensajeFinal += "Errores al validar!\n";
 
-        foreach (string mensaje in mensajes)
-        {
-            mensajeFinal += $"{mensaje}\n";
-        }
-
         for (int i = 0; i < mensajes.Count; i++)
         {
             string mensaje = mensajes.ElementAt(i);

@@ -45,6 +45,14 @@ public class Sistema
     }
     public void AltaBovino(Bovino b)
     {
+        foreach (Animal a in Animales)
+        {
+            if (a.ID == b.ID)
+            {
+                throw new ErrorDeValidacion("Ya existe un bovino con esa caravana");
+            }
+        }
+
         b.Validar();
         Animales.Add(b);
     }
@@ -89,5 +97,10 @@ public class Sistema
 
         AltaBovino(b1);
         AltaBovino(b2);
+
+        Potrero p1 = new Potrero("Potrero 1", 10, 1000);
+        Potrero p2 = new Potrero("Potrero 2", 20, 2000);
+        AltaPotrero(p1);
+        AltaPotrero(p2);
     }
 }

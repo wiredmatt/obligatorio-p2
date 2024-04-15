@@ -2,7 +2,7 @@ namespace Estancia.Dominio;
 
 public abstract class Animal
 {
-    public string ID { get; private set; } // Caravana
+    public string ID { get; private set; } // Caravana - renombrado a ID para mantener consistencia con otras Entidades.
     public string Raza { get; set; }
     public ESexo Sexo { get; set; }
     public DateTime FechaNacimiento { get; set; }

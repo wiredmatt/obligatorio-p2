@@ -4,20 +4,16 @@ public class Potrero
 {
     private static int UltimoID = 1;
     public int ID { get; private set; }
-
     public string Descripcion { get; set; }
-
     public int Hectareas { get; private set; }
     public int Capacidad { get; private set; }
-
-    public List<Animal> animales { get; private set; } = new List<Animal>();
+    public List<Animal> Animales { get; private set; } = new List<Animal>();
 
     public Potrero() { }
 
     public Potrero(string descripcion, int hectareas, int capacidad)
     {
-        ID = UltimoID;
-        UltimoID++;
+        ID = UltimoID++;
         Descripcion = descripcion;
         Hectareas = hectareas;
         Capacidad = capacidad;
@@ -50,13 +46,18 @@ public class Potrero
 
     public void AgregarAnimal(Animal animal)
     {
-        if (animales.Count < Capacidad)
+        if (Animales.Count < Capacidad)
         {
-            animales.Add(animal);
+            Animales.Add(animal);
         }
         else
         {
             throw new ErrorDeValidacion("El potrero está lleno. No se pudo agregar al animal.");
         }
+    }
+
+    public override string ToString()
+    {
+        return $"| #{ID} | {Hectareas} | {Animales.Count} / {Capacidad} | {Descripcion} |";
     }
 }

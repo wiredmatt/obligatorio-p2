@@ -4,7 +4,6 @@ public class Vacunacion
 {
     public Vacuna Vacuna { get; private set; }
     public DateTime Fecha { get; private set; }
-
     public DateTime Vencimiento { get; private set; }
 
     public Vacunacion() { }

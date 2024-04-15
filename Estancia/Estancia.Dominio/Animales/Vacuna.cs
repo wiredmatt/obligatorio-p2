@@ -3,9 +3,7 @@ namespace Estancia.Dominio;
 public class Vacuna
 {
     public string Nombre { get; private set; }
-
     public string Descripcion { get; private set; }
-
     public string Patogeno { get; private set; }
 
     public Vacuna() { }
