@@ -203,7 +203,8 @@ public class Sistema
             // debido al uso de ids pseudo-aleatorios, es posible que se generen colisiones!
             // falla en silencio y reintenta la recarga
             // warning: esto podria generar un loop infinito si hay errores en otra cosa
-            // y por eso se usa la variable de control `ciclos`
+            // y por eso se usa la variable de control `ciclos`, la cual eventualmente
+            // forzara a que se lance la excepcion
             if (ciclos < 5)
             {
                 Precarga(ciclos + 1);
