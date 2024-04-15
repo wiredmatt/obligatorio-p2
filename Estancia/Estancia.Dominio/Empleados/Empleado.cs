@@ -43,7 +43,7 @@ public abstract class Empleado
             errores.Add("La contraseña es requerida");
         }
 
-        if (Validadores.CumpleMinimoMaximoCaracteres(Contrasena, Config.MIN_CARACTERES_CONTRASENA))
+        if (!Validadores.CumpleMinimoMaximoCaracteres(Contrasena, Config.MIN_CARACTERES_CONTRASENA))
         {
             errores.Add($"La contraseña debe tener al menos {Config.MIN_CARACTERES_CONTRASENA} caracteres");
         }
