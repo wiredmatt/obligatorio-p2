@@ -230,7 +230,7 @@ class Program
         Console.WriteLine(mensaje);
         string str = Console.ReadLine();
 
-        while (min > 0 && str.Length < min || max > 0 && str.Length > max
+        while (!Validadores.CumpleMinimoMaximoCaracteres(str, min, max)
                || alfanumerico && !Validadores.EsAlfaNumerico(str)
                || opcionesValidas != null && !opcionesValidas.Contains(str, StringComparer.CurrentCultureIgnoreCase))
         {
@@ -241,7 +241,7 @@ class Program
             }
             if (max > 0 && str.Length > max)
             {
-                Console.WriteLine($"> El valor debe tener menos de {max} caracteres.");
+                Console.WriteLine($"> El valor debe tener no más de {max} caracteres.");
             }
             if (alfanumerico && !Validadores.EsAlfaNumerico(str))
             {

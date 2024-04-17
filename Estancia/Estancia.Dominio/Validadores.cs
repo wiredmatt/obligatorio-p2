@@ -15,12 +15,12 @@ public static class Validadores
 
     public static bool CumpleMinimoMaximoCaracteres(string str, int min)
     {
-        return str.Length >= min;
+        return min == 0 || str.Length >= min;
     }
 
     public static bool CumpleMinimoMaximoCaracteres(string str, int min, int max)
     {
-        return str.Length >= min && str.Length <= max;
+        return (min == 0 || str.Length >= min) && (max == 0 || str.Length <= max);
     }
 
     public static bool EsStringVacio(string str)
