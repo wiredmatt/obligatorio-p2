@@ -83,7 +83,9 @@ class Program
         Console.WriteLine("-----------------------------------------------------------------");
         foreach (Potrero p in potreros)
         {
-            Console.WriteLine(p);
+            string potreroStr = p.ToString();
+            Console.WriteLine(potreroStr);
+            Console.WriteLine(new string('-', potreroStr.Length));
         }
     }
 
@@ -99,27 +101,23 @@ class Program
 
         double peso = LeerNumero("Ingrese el peso:");
 
-        Console.WriteLine($"Ingrese el sexo: ([M]/H)");
-        string _sexo = Console.ReadLine();
-        if (string.IsNullOrWhiteSpace(_sexo) || !_sexo.Equals("h", StringComparison.CurrentCultureIgnoreCase) || !_sexo.Equals("m", StringComparison.CurrentCultureIgnoreCase))
+        string _sexo = LeerString($"Ingrese el sexo: (Macho / Hembra)", 1, 0, false, new List<string> { "m", "macho", "h", "hembra" }).ToLower();
+        ESexo sexo = _sexo switch
         {
-            _sexo = "m";
-        }
-        ESexo sexo = ESexo.Macho;
-        if (_sexo.Equals("h", StringComparison.CurrentCultureIgnoreCase))
-        {
-            sexo = ESexo.Hembra;
-        }
+            "m" or "macho" => ESexo.Macho,
+            "h" or "hembra" => ESexo.Hembra,
+            _ => ESexo.Hembra,
+        };
 
-        bool esHibrido = LeerString("Es híbrido? (si/[no])").Equals("si", StringComparison.CurrentCultureIgnoreCase);
+        bool esHibrido = LeerString("Es híbrido? (si / no)", 1, 0, false, new List<string> { "s", "si", "n", "no" }).StartsWith("s", StringComparison.CurrentCultureIgnoreCase);
 
-        Console.WriteLine("Ingrese el tipo de alimentación ([P]/G):");
-        string _alimentacion = Console.ReadLine();
-        EAlimentacion alimentacion = EAlimentacion.Pastura;
-        if (_alimentacion.Equals("g", StringComparison.CurrentCultureIgnoreCase))
+        string _alimentacion = LeerString($"Ingrese el tipo de alimentación (Pastura / Grano):", 1, 0, false, new List<string> { "p", "pastura", "g", "grano" });
+        var alimentacion = _alimentacion switch
         {
-            alimentacion = EAlimentacion.Grano;
-        }
+            "p" or "pastura" => EAlimentacion.Pastura,
+            "g" or "grano" => EAlimentacion.Grano,
+            _ => EAlimentacion.Pastura,
+        };
 
         DateTime fechaNacimiento = LeerFecha("Ingrese la fecha de nacimiento: (dia/mes/año)");
 
@@ -143,19 +141,30 @@ class Program
 
     public static int LeerNumeroEntero(string mensaje, bool positivo = true)
     {
-        int numero;
-        Console.WriteLine(mensaje);
-        string strNumero = Console.ReadLine();
+        int numero = 0;
+        bool isValid = false;
 
-        while (!Int32.TryParse(strNumero, out numero) || (positivo && numero < 0))
+        while (!isValid)
         {
-            Console.WriteLine("Debe ingresar un número entero.");
-            if (positivo && numero < 0)
-            {
-                Console.WriteLine("El número debe ser positivo.");
-            }
             Console.WriteLine(mensaje);
-            strNumero = Console.ReadLine();
+            string strNumero = Console.ReadLine();
+
+            try
+            {
+                numero = Int32.Parse(strNumero);
+                if (positivo && numero < 0)
+                {
+                    Console.WriteLine("El número debe ser positivo.");
+                }
+                else
+                {
+                    isValid = true;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Debe ingresar un número entero.");
+            }
         }
 
         return numero;
@@ -163,19 +172,30 @@ class Program
 
     public static double LeerNumero(string mensaje, bool positivo = true)
     {
-        double numero;
-        Console.WriteLine(mensaje);
-        string strNumero = Console.ReadLine();
+        double numero = 0;
+        bool isValid = false;
 
-        while (!Double.TryParse(strNumero, out numero) || (positivo && numero < 0))
+        while (!isValid)
         {
-            Console.WriteLine("Debe ingresar un número.");
-            if (positivo && numero < 0)
-            {
-                Console.WriteLine("El número debe ser positivo.");
-            }
             Console.WriteLine(mensaje);
-            strNumero = Console.ReadLine();
+            string strNumero = Console.ReadLine();
+
+            try
+            {
+                numero = Double.Parse(strNumero);
+                if (positivo && numero < 0)
+                {
+                    Console.WriteLine("El número debe ser positivo.");
+                }
+                else
+                {
+                    isValid = true;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Debe ingresar un número.");
+            }
         }
 
         return numero;
@@ -183,26 +203,36 @@ class Program
 
     public static DateTime LeerFecha(string mensaje)
     {
-        DateTime fecha;
-        Console.WriteLine(mensaje);
-        string strFecha = Console.ReadLine();
+        DateTime fecha = DateTime.MinValue;
+        bool isValid = false;
 
-        while (!DateTime.TryParse(strFecha, new CultureInfo("es-UY"), out fecha))
+        while (!isValid)
         {
-            Console.WriteLine("Debe ingresar una fecha valida.");
             Console.WriteLine(mensaje);
-            strFecha = Console.ReadLine();
+            string strFecha = Console.ReadLine();
+
+            try
+            {
+                fecha = DateTime.Parse(strFecha, new CultureInfo("es-UY"));
+                isValid = true;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Debe ingresar una fecha valida.");
+            }
         }
 
         return fecha;
     }
 
-    public static string LeerString(string mensaje, int min = 0, int max = 0, bool alfanumerico = false)
+    public static string LeerString(string mensaje, int min = 0, int max = 0, bool alfanumerico = false, List<string> opcionesValidas = null)
     {
         Console.WriteLine(mensaje);
         string str = Console.ReadLine();
 
-        while (min > 0 && str.Length < min || max > 0 && str.Length > max || alfanumerico && !Validadores.EsAlfaNumerico(str))
+        while (min > 0 && str.Length < min || max > 0 && str.Length > max
+               || alfanumerico && !Validadores.EsAlfaNumerico(str)
+               || opcionesValidas != null && !opcionesValidas.Contains(str, StringComparer.CurrentCultureIgnoreCase))
         {
             Console.WriteLine("Debe ingresar un valor válido.");
             if (min > 0 && str.Length < min)
@@ -216,6 +246,10 @@ class Program
             if (alfanumerico && !Validadores.EsAlfaNumerico(str))
             {
                 Console.WriteLine("> El valor debe ser alfanumérico.");
+            }
+            if (opcionesValidas != null && !opcionesValidas.Contains(str))
+            {
+                Console.WriteLine($"> El valor debe ser una de las siguientes opciones: {string.Join(", ", opcionesValidas)}");
             }
 
             Console.WriteLine(mensaje);
