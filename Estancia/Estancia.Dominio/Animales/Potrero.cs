@@ -56,6 +56,17 @@ public class Potrero
         }
     }
 
+    public double CalcularGanancia()
+    {
+        double ganancia = 0;
+        foreach (var animal in Animales)
+        {
+            ganancia += animal.GetPrecioVenta();
+        }
+        return ganancia;
+
+    }
+
     public override string ToString()
     {
         return $"| #{ID} | {Hectareas} | {Animales.Count} / {Capacidad} | {Descripcion} |";

@@ -14,7 +14,20 @@ public class Bovino : Animal
 
     public override double GetPrecioVenta()
     {
-        return 0;
+        double precioBase = PrecioKgPie * Peso;
+        double precio = precioBase;
+
+        if (Alimentacion == EAlimentacion.Grano)
+        {
+            precio += precioBase * 30 / 100;
+        }
+
+        if (Sexo == ESexo.Hembra)
+        {
+            precio += precioBase * 10 / 100;
+        }
+
+        return precio;
     }
 
     public override string GetTipo()

@@ -93,6 +93,11 @@ public abstract class Animal
 
     public abstract double GetPrecioVenta();
 
+    public double GetCostoCrianza()
+    {
+        return CostoAdquisicion + CostoAlimentacion;
+    }
+
     public abstract string GetTipo();
 
     public override string ToString()
