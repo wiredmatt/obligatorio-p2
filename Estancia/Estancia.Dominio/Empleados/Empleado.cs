@@ -1,6 +1,6 @@
 namespace Estancia.Dominio;
 
-public abstract class Empleado
+public abstract class Empleado : IValidable
 {
     private static int UltimoID = 1;
 

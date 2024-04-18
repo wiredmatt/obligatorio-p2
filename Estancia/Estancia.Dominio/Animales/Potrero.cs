@@ -1,6 +1,6 @@
 namespace Estancia.Dominio;
 
-public class Potrero
+public class Potrero : IValidable
 {
     private static int UltimoID = 1;
     public int ID { get; private set; }

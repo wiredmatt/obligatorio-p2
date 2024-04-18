@@ -1,6 +1,6 @@
 namespace Estancia.Dominio;
 
-public class Tarea
+public class Tarea : IValidable
 {
     private static int UltimoID = 1;
     public int ID { get; private set; }

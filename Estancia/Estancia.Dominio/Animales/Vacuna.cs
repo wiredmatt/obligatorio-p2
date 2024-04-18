@@ -1,6 +1,6 @@
 namespace Estancia.Dominio;
 
-public class Vacuna
+public class Vacuna : IValidable
 {
     public string Nombre { get; private set; }
     public string Descripcion { get; private set; }

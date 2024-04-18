@@ -1,0 +1,4 @@
+interface IValidable
+{
+    void Validar();
+}

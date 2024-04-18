@@ -169,7 +169,7 @@ public class Sistema
                 // nota: probabilidad de colision!
                 string idRandom = $"{razaRandom.ElementAt(0)}{rnd.Next(10)}{rnd.Next(10)}{rnd.Next(10)}{rnd.Next(10)}{rnd.Next(10)}{rnd.Next(10)}{rnd.Next(10)}";
 
-                Ovino o = new Ovino(idRandom, razaRandom, ESexo.Macho, new DateTime(rnd.Next(2010, 2023), rnd.Next(1, 13), rnd.Next(1, 27)), rnd.Next(1000), rnd.Next(500), rnd.Next(100, 1000), rnd.Next(2).Equals(1));
+                Ovino o = new Ovino(idRandom, razaRandom, ESexo.Macho, new DateTime(rnd.Next(2010, 2023), rnd.Next(1, 13), rnd.Next(1, 27)), rnd.Next(1000), rnd.Next(500), rnd.Next(100, 1000), rnd.Next(2).Equals(1), rnd.Next(2, 20));
                 Vacuna randVacuna = Vacunas[rnd.Next(0, 5)];
                 o.Vacunar(randVacuna, new DateTime(rnd.Next(o.FechaNacimiento.Year, 2023), rnd.Next(o.FechaNacimiento.Month, 13), rnd.Next(o.FechaNacimiento.Day, 27)));
                 AltaOvino(o);
