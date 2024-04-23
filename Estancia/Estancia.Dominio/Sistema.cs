@@ -123,7 +123,7 @@ public class Sistema
                         fechaCierre = fechaInicio.AddDays(rnd.Next(0, 20));
                     }
 
-                    Tarea tarea = new Tarea($"Tarea {j}", fechaInicio, fechaCierre, rnd.Next(2).Equals(1) ? capataz1 : capataz2, peon);
+                    Tarea tarea = new Tarea($"Tarea {j}", fechaInicio, fechaCierre, rnd.Next(2).Equals(1) ? capataz1 : capataz2);
                     peon.AltaTarea(tarea);
 
                     if (terminada)
