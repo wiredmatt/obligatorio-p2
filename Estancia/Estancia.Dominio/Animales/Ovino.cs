@@ -19,16 +19,22 @@ public class Ovino : Animal
         return "Ovino";
     }
 
+    // El potencial precio de venta en ovinos se determina multplicando el peso de lana
+    // estimada por el precio por kilogramo de lana. 
+    // A esto se le suma el producto del precio por kilogramo de ovino en pie por el peso del animal. 
+    // Además, si la raza es híbrida a este precio se le resta un 5%.
     public override double GetPrecioVenta()
     {
         double precioBase = (PesoLana * PrecioKgLana) + (PrecioKgPie * Peso);
-        double precio = precioBase;
+        double precioFinal = precioBase;
 
         if (EsHibrido)
         {
-            precio -= precioBase * 5 / 100;
+            precioFinal -= precioBase * 5 / 100;
         }
 
-        return precio;
+        double costoCrianza = GetCostoCrianza();
+        precioFinal -= costoCrianza;
+        return precioFinal;
     }
 }

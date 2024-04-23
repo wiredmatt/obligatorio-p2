@@ -93,9 +93,16 @@ public abstract class Animal : IValidable
 
     public abstract double GetPrecioVenta();
 
+
+    // 1. El costo de crianza del animal se determina sumando el coso de adquisición más el 
+    // costo de alimentación.
+    // 2. A dicho costo se le suman $200 por cada vacuna administrada.
     public double GetCostoCrianza()
     {
-        return CostoAdquisicion + CostoAlimentacion;
+        double costoBase = CostoAdquisicion + CostoAlimentacion;
+        double costoVacunas = 200 * Vacunaciones.Count;
+
+        return costoBase + costoVacunas;
     }
 
     public abstract string GetTipo();
