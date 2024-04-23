@@ -10,21 +10,19 @@ public class Tarea : IValidable
     public bool Completada { get; private set; }
     public string? Comentario { get; private set; } // null hasta que se complete la tarea
     public Capataz Capataz { get; private set; }
-    public Peon Peon { get; private set; }
 
     public Tarea()
     {
         ID = UltimoID++;
     }
 
-    public Tarea(string descripcion, DateTime fechaInicio, DateTime fechaCierre, Capataz capataz, Peon peon)
+    public Tarea(string descripcion, DateTime fechaInicio, DateTime fechaCierre, Capataz capataz)
     {
         ID = UltimoID++;
         Descripcion = descripcion;
         FechaInicio = fechaInicio;
         FechaCierre = fechaCierre;
         Capataz = capataz;
-        Peon = peon;
     }
 
     public void Validar()
@@ -54,11 +52,6 @@ public class Tarea : IValidable
         if (Capataz == null)
         {
             errores.Add("La tarea debe tener un capataz asignado");
-        }
-
-        if (Peon == null)
-        {
-            errores.Add("La tarea debe tener un peón asignado");
         }
 
         if (errores.Count > 0)
