@@ -38,13 +38,13 @@ public class Sistema
         Empleados.Add(p);
     }
 
-    public Animal? BuscarAnimalPorCaravana(string caravana)
+    public Animal? BuscarAnimalPorID(string id)
     {
         Animal? animal = null;
 
         foreach (Animal a in Animales)
         {
-            if (a.ID == caravana)
+            if (a.ID == id)
             {
                 animal = a;
                 break;
@@ -56,7 +56,7 @@ public class Sistema
 
     public void AltaAnimal(Animal animal)
     {
-        Animal animalYaExistente = BuscarAnimalPorCaravana(animal.ID);
+        Animal animalYaExistente = BuscarAnimalPorID(animal.ID);
 
         if (animalYaExistente != null)
         {

@@ -96,12 +96,12 @@ class Program
         Console.WriteLine("---------------------------------------------------");
 
         bool caravanaLibre = false;
-        string caravana = "";
+        string id = "";
 
         while (!caravanaLibre)
         {
-            caravana = LeerString("Ingrese la caravana:", Config.CANTIDAD_CARACTERES_CARAVANA_ANIMAL, Config.CANTIDAD_CARACTERES_CARAVANA_ANIMAL, true);
-            caravanaLibre = Sistema.Instancia.BuscarAnimalPorCaravana(caravana) == null;
+            id = LeerString("Ingrese la caravana:", Config.CANTIDAD_CARACTERES_CARAVANA_ANIMAL, Config.CANTIDAD_CARACTERES_CARAVANA_ANIMAL, true);
+            caravanaLibre = Sistema.Instancia.BuscarAnimalPorID(id) == null;
 
             if (!caravanaLibre)
             {
@@ -139,7 +139,7 @@ class Program
 
         try
         {
-            Bovino b = new Bovino(caravana, raza, sexo, fechaNacimiento, costoAdquisicion, costoAlimentacion, peso, esHibrido, alimentacion);
+            Bovino b = new Bovino(id, raza, sexo, fechaNacimiento, costoAdquisicion, costoAlimentacion, peso, esHibrido, alimentacion);
             Sistema.Instancia.AltaAnimal(b);
 
             Console.WriteLine($"El Bovino #{b.ID} fue ingresado correctamente.");
