@@ -95,7 +95,20 @@ class Program
         Console.WriteLine("ALTA DE BOVINO");
         Console.WriteLine("---------------------------------------------------");
 
-        string caravana = LeerString("Ingrese la caravana:", Config.CANTIDAD_CARACTERES_CARAVANA_ANIMAL, Config.CANTIDAD_CARACTERES_CARAVANA_ANIMAL, true);
+        bool caravanaLibre = false;
+        string caravana = "";
+
+        while (!caravanaLibre)
+        {
+            caravana = LeerString("Ingrese la caravana:", Config.CANTIDAD_CARACTERES_CARAVANA_ANIMAL, Config.CANTIDAD_CARACTERES_CARAVANA_ANIMAL, true);
+            caravanaLibre = Sistema.Instancia.BuscarAnimalPorCaravana(caravana) == null;
+
+            if (!caravanaLibre)
+            {
+                Console.WriteLine("Ya existe un animal con esa caravana.");
+            }
+        }
+
 
         string raza = LeerString("Ingrese la raza:", 1);
 
@@ -127,7 +140,7 @@ class Program
         try
         {
             Bovino b = new Bovino(caravana, raza, sexo, fechaNacimiento, costoAdquisicion, costoAlimentacion, peso, esHibrido, alimentacion);
-            Sistema.Instancia.AltaBovino(b);
+            Sistema.Instancia.AltaAnimal(b);
 
             Console.WriteLine($"El Bovino #{b.ID} fue ingresado correctamente.");
         }

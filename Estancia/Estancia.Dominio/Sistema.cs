@@ -38,23 +38,33 @@ public class Sistema
         Empleados.Add(p);
     }
 
-    public void AltaOvino(Ovino o)
+    public Animal? BuscarAnimalPorCaravana(string caravana)
     {
-        o.Validar();
-        Animales.Add(o);
-    }
-    public void AltaBovino(Bovino b)
-    {
+        Animal? animal = null;
+
         foreach (Animal a in Animales)
         {
-            if (a.ID == b.ID)
+            if (a.ID == caravana)
             {
-                throw new ErrorDeValidacion("Ya existe un bovino con esa caravana");
+                animal = a;
+                break;
             }
         }
 
-        b.Validar();
-        Animales.Add(b);
+        return animal;
+    }
+
+    public void AltaAnimal(Animal animal)
+    {
+        Animal animalYaExistente = BuscarAnimalPorCaravana(animal.ID);
+
+        if (animalYaExistente != null)
+        {
+            throw new ErrorDeValidacion("Ya existe un animal con esa caravana");
+        }
+
+        animal.Validar();
+        Animales.Add(animal);
     }
 
     public void AltaPotrero(Potrero p)
@@ -225,7 +235,7 @@ public class Sistema
         foreach (Ovino o in ovinos)
         {
             o.Vacunar(vacunasOvinos[0], new DateTime(2023, 10, 10));
-            AltaOvino(o);
+            AltaAnimal(o);
 
             if (o.ID.EndsWith('1'))
             {
@@ -278,7 +288,7 @@ public class Sistema
         foreach (Bovino b in bovinos)
         {
             b.Vacunar(vacunasBovinos[0], new DateTime(2023, 10, 10));
-            AltaBovino(b);
+            AltaAnimal(b);
 
             if (b.ID.EndsWith('1'))
             {
