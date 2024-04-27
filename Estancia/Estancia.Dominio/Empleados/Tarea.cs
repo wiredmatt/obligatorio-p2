@@ -4,9 +4,10 @@ public class Tarea : IValidable
 {
     private static int UltimoID = 1;
     public int ID { get; private set; }
-    public string Descripcion { get; set; }
+    public string Descripcion { get; private set; }
     public DateTime FechaInicio { get; private set; }
-    public DateTime FechaCierre { get; private set; }
+    public DateTime FechaLimite { get; private set; }
+    public DateTime? FechaCierre { get; private set; } = null;
     public bool Completada { get; private set; }
     public string? Comentario { get; private set; } // null hasta que se complete la tarea
     public Capataz Capataz { get; private set; }
@@ -16,12 +17,12 @@ public class Tarea : IValidable
         ID = UltimoID++;
     }
 
-    public Tarea(string descripcion, DateTime fechaInicio, DateTime fechaCierre, Capataz capataz)
+    public Tarea(string descripcion, DateTime fechaInicio, DateTime fechaLimite, Capataz capataz)
     {
         ID = UltimoID++;
         Descripcion = descripcion;
         FechaInicio = fechaInicio;
-        FechaCierre = fechaCierre;
+        FechaLimite = fechaLimite;
         Capataz = capataz;
     }
 
@@ -39,14 +40,14 @@ public class Tarea : IValidable
             errores.Add("La fecha de inicio no puede estar vacía");
         }
 
-        if (FechaCierre == default)
+        if (FechaLimite == default)
         {
-            errores.Add("La fecha de cierre no puede estar vacía");
+            errores.Add("La fecha limite no puede estar vacía");
         }
 
-        if (FechaInicio > FechaCierre)
+        if (FechaInicio > FechaLimite)
         {
-            errores.Add("La fecha de inicio no puede ser mayor a la fecha de cierre");
+            errores.Add("La fecha de inicio no puede ser mayor a la fecha de limite");
         }
 
         if (Capataz == null)
@@ -62,7 +63,11 @@ public class Tarea : IValidable
 
     public void Completar(string comentario)
     {
-        Completada = true;
-        Comentario = comentario;
+        if (!Completada)
+        {
+            Completada = true;
+            Comentario = comentario;
+            FechaCierre = DateTime.Now;
+        }
     }
 }
