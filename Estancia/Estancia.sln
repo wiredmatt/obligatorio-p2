@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estancia.CLI", "Estancia.CL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estancia.Dominio", "Estancia.Dominio\Estancia.Dominio.csproj", "{E0DE78ED-72E7-49F0-BF27-5FA679312DDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estancia.Web", "Estancia.Web\Estancia.Web.csproj", "{A86D4D8A-1128-49E6-8294-456771544BE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{E0DE78ED-72E7-49F0-BF27-5FA679312DDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0DE78ED-72E7-49F0-BF27-5FA679312DDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0DE78ED-72E7-49F0-BF27-5FA679312DDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A86D4D8A-1128-49E6-8294-456771544BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A86D4D8A-1128-49E6-8294-456771544BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A86D4D8A-1128-49E6-8294-456771544BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A86D4D8A-1128-49E6-8294-456771544BE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
