@@ -1,0 +1,38 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Empleados";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Empleados</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Mail</th>
+                <th scope="col">Ingreso</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Empleado e in ViewBag.Empleados)
+            {
+                <tr>
+                    <th scope="row">
+                        #@e.ID
+                    </th>
+                    <td>
+                        @e.Nombre
+                    </td>
+                    <td>
+                        @e.Mail
+                    </td>
+                    <td>
+                        @e.FechaIngreso.ToShortDateString()
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
