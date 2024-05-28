@@ -1,3 +1,5 @@
+using System.Collections.Specialized;
+
 namespace Estancia.Dominio;
 
 public class Sistema
@@ -26,16 +28,38 @@ public class Sistema
         Precarga();
     }
 
-    public void AltaCapataz(Capataz c)
+    public Empleado? BuscarEmpleadoPorEmail(string email)
     {
-        c.Validar();
-        Empleados.Add(c);
+        foreach (Empleado e in Empleados)
+        {
+            if (e.Mail == email) return e;
+        }
+
+        return null;
     }
 
-    public void AltaPeon(Peon p)
+    public Empleado? Login(string email, string contrasena)
     {
-        p.Validar();
-        Empleados.Add(p);
+        Empleado? e = BuscarEmpleadoPorEmail(email);
+
+        if (e != null && e.Contrasena == contrasena) return e;
+
+
+        throw new ErrorDeValidacion("No existe un empleado con las credenciales provistas");
+    }
+
+    public void AltaEmpleado(Empleado e)
+    {
+        e.Validar();
+
+        Empleado? empleadoYaExistente = BuscarEmpleadoPorEmail(e.Mail);
+
+        if (empleadoYaExistente != null)
+        {
+            throw new ErrorDeValidacion("Ya existe un empleado con ese mail.");
+        }
+
+        Empleados.Add(e);
     }
 
     public Animal? BuscarAnimalPorID(string id)
@@ -56,14 +80,15 @@ public class Sistema
 
     public void AltaAnimal(Animal animal)
     {
-        Animal animalYaExistente = BuscarAnimalPorID(animal.ID);
+        animal.Validar();
+
+        Animal? animalYaExistente = BuscarAnimalPorID(animal.ID);
 
         if (animalYaExistente != null)
         {
             throw new ErrorDeValidacion("Ya existe un animal con esa caravana");
         }
 
-        animal.Validar();
         Animales.Add(animal);
     }
 
@@ -104,8 +129,8 @@ public class Sistema
         #region Capataces
         Capataz capataz1 = new Capataz("oscar@estancia.com", "12345678", "Oscar", new DateTime(2018, 7, 20), 5);
         Capataz capataz2 = new Capataz("ana@estancia.com", "12345678", "Ana", new DateTime(2019, 11, 15), 8);
-        AltaCapataz(capataz1);
-        AltaCapataz(capataz2);
+        AltaEmpleado(capataz1);
+        AltaEmpleado(capataz2);
         #endregion
 
         #region Peones
@@ -122,7 +147,7 @@ public class Sistema
         List<Peon> peones = new List<Peon> { peon1, peon2, peon3, peon4, peon5, peon6, peon7, peon8, peon9, peon10 };
         foreach (Peon p in peones)
         {
-            AltaPeon(p);
+            AltaEmpleado(p);
 
             #region Tareas
             Tarea tarea1 = new Tarea("Cosecha de cultivos", new DateTime(2024, 4, 1), new DateTime(2024, 4, 15), capataz1);
