@@ -32,4 +32,9 @@ public class Capataz : Empleado
             throw new ErrorDeValidacion(errores);
         }
     }
+
+    public override string ToString()
+    {
+        return base.ToString();
+    }
 }

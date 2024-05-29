@@ -1,6 +1,6 @@
 namespace Estancia.Dominio;
 
-public class Potrero : IValidable
+public class Potrero : IValidable, IComparable
 {
     private static int UltimoID = 1;
     public int ID { get; set; }
@@ -73,5 +73,19 @@ public class Potrero : IValidable
     public override string ToString()
     {
         return $"| #{ID} | {Hectareas} | {Animales.Count} / {Capacidad} | {Descripcion} |";
+    }
+
+    public int CompareTo(object? other)
+    {
+        Potrero otherPotrero = other as Potrero;
+
+        // Calcular el `peso` de este objeto
+        double thisPeso = Capacidad - Animales.Count;
+
+        // Calcular el `peso` del otro objeto
+        double otherPeso = otherPotrero.Capacidad - otherPotrero.Animales.Count;
+
+        // Comparar los `pesos`
+        return thisPeso.CompareTo(otherPeso);
     }
 }

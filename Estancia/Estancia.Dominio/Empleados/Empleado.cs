@@ -67,4 +67,9 @@ public abstract class Empleado : IValidable
     }
 
     public abstract string GetTipo();
+
+    public override string ToString()
+    {
+        return $"| #{ID} | {Nombre} | {Mail} |";
+    }
 }

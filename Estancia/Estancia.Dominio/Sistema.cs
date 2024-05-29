@@ -26,6 +26,43 @@ public class Sistema
         Precarga();
     }
 
+    public List<Peon> GetPeones()
+    {
+        List<Peon> peones = new List<Peon>();
+
+        foreach (Empleado e in Empleados)
+        {
+            if (e.GetTipo() == "Peon")
+            {
+                Peon peon = e as Peon;
+                peones.Add(peon);
+            }
+        }
+
+        return peones;
+    }
+
+    public Peon GetPeonPorID(int ID)
+    {
+        List<Peon> peones = GetPeones();
+
+        foreach (Peon p in peones)
+        {
+            if (p.ID == ID)
+            {
+                return p;
+            }
+        }
+
+        return null;
+    }
+
+    public void AsignarTareaAPeon(Tarea t, int idPeon)
+    {
+        Peon? p = GetPeonPorID(idPeon) ?? throw new ErrorDeValidacion("No existe un Peon con ese ID");
+        p.AltaTarea(t);
+    }
+
     public Empleado? BuscarEmpleadoPorEmail(string email)
     {
         foreach (Empleado e in Empleados)
@@ -113,6 +150,8 @@ public class Sistema
                 potreros.Add(p);
             }
         }
+
+        potreros.Sort();
 
         return potreros;
     }

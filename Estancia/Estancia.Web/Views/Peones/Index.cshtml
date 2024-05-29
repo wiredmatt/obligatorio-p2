@@ -1,11 +1,11 @@
 @using Estancia.Dominio
 
 @{
-    ViewData["Title"] = "Empleados";
+    ViewData["Title"] = "Peones";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Empleados</h1>
+    <h1 class="display-4">Peones</h1>
     <table class="table">
         <thead>
             <tr>
@@ -13,23 +13,30 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Mail</th>
                 <th scope="col">Ingreso</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (Empleado e in ViewBag.Empleados)
+            @foreach (Peon p in ViewBag.Peones)
             {
                 <tr>
                     <th scope="row">
-                        #@e.ID
+                        #@p.ID
                     </th>
                     <td>
-                        @e.Nombre
+                        @p.Nombre
                     </td>
                     <td>
-                        @e.Mail
+                        @p.Mail
                     </td>
                     <td>
-                        @e.FechaIngreso.ToShortDateString()
+                        @p.FechaIngreso.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ver Tareas", "Detalle", "Peones", new { id = p.ID }, new
+                            {
+                                @class = "btn btn-primary"
+                            })
                     </td>
                 </tr>
             }

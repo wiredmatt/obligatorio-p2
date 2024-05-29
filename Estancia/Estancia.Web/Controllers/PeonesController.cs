@@ -5,20 +5,34 @@ using Estancia.Dominio;
 
 namespace Estancia.Web.Controllers;
 
-public class EmpleadosController : Controller
+public class PeonesController : Controller
 {
-    private readonly ILogger<EmpleadosController> _logger;
+    private readonly ILogger<PeonesController> _logger;
 
-    public EmpleadosController(ILogger<EmpleadosController> logger)
+    public PeonesController(ILogger<PeonesController> logger)
     {
         _logger = logger;
     }
 
     public IActionResult Index()
     {
-        List<Empleado> empleados = Sistema.Instancia.Empleados;
+        List<Peon> peones = Sistema.Instancia.GetPeones();
 
-        ViewBag.Empleados = empleados;
+        ViewBag.Peones = peones;
+
+        return View();
+    }
+
+    public IActionResult Detalle(int id)
+    {
+        Peon p = Sistema.Instancia.GetPeonPorID(id);
+
+        if (p == null)
+        {
+            return Redirect("/");
+        }
+
+        ViewBag.Peon = p;
 
         return View();
     }

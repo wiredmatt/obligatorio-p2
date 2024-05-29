@@ -28,4 +28,9 @@ public class Peon : Empleado
     {
         base.Validar();
     }
+
+    public override string ToString()
+    {
+        return base.ToString();
+    }
 }
