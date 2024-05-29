@@ -42,7 +42,7 @@ public class Sistema
         return peones;
     }
 
-    public Peon GetPeonPorID(int ID)
+    public Peon? GetPeonPorID(int ID)
     {
         List<Peon> peones = GetPeones();
 

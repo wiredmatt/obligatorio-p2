@@ -25,7 +25,7 @@ public class PeonesController : Controller
 
     public IActionResult Detalle(int id)
     {
-        Peon p = Sistema.Instancia.GetPeonPorID(id);
+        Peon? p = Sistema.Instancia.GetPeonPorID(id);
 
         if (p == null)
         {
