@@ -3,14 +3,14 @@ namespace Estancia.Dominio;
 public class Tarea : IValidable
 {
     private static int UltimoID = 1;
-    public int ID { get; private set; }
-    public string Descripcion { get; private set; }
-    public DateTime FechaInicio { get; private set; }
-    public DateTime FechaLimite { get; private set; }
-    public DateTime? FechaCierre { get; private set; } = null;
-    public bool Completada { get; private set; }
-    public string? Comentario { get; private set; } // null hasta que se complete la tarea
-    public Capataz Capataz { get; private set; }
+    public int ID { get; set; }
+    public string Descripcion { get; set; }
+    public DateTime FechaInicio { get; set; }
+    public DateTime FechaLimite { get; set; }
+    public DateTime? FechaCierre { get; set; } = null;
+    public bool Completada { get; set; }
+    public string? Comentario { get; set; } // null hasta que se complete la tarea
+    public Capataz Capataz { get; set; }
 
     public Tarea()
     {

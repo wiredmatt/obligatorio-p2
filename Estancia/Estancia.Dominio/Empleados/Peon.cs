@@ -4,7 +4,7 @@ public class Peon : Empleado
 {
     public bool EsResidente { get; set; }
 
-    public List<Tarea> Tareas { get; private set; } = new List<Tarea>();
+    public List<Tarea> Tareas { get; set; } = new List<Tarea>();
 
     public Peon() { }
 

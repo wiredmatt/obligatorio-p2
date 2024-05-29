@@ -2,9 +2,9 @@ namespace Estancia.Dominio;
 
 public class Vacunacion : IValidable
 {
-    public Vacuna Vacuna { get; private set; }
-    public DateTime Fecha { get; private set; }
-    public DateTime Vencimiento { get; private set; }
+    public Vacuna Vacuna { get; set; }
+    public DateTime Fecha { get; set; }
+    public DateTime Vencimiento { get; set; }
 
     public Vacunacion() { }
 

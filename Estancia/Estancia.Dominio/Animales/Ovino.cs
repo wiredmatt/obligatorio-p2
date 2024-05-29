@@ -5,7 +5,7 @@ public class Ovino : Animal
     public static double PrecioKgPie { get; set; } = 200;
     public static double PrecioKgLana { get; set; } = 50;
 
-    public double PesoLana { get; private set; }
+    public double PesoLana { get; set; }
 
     public Ovino() { }
 

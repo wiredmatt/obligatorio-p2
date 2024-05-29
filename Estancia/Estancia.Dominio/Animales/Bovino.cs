@@ -2,7 +2,7 @@ namespace Estancia.Dominio;
 
 public class Bovino : Animal
 {
-    public EAlimentacion Alimentacion { get; private set; }
+    public EAlimentacion Alimentacion { get; set; }
     public static double PrecioKgPie { get; set; } = 100;
 
     public Bovino() { }

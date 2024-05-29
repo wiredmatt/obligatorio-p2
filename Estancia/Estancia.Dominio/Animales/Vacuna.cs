@@ -2,9 +2,9 @@ namespace Estancia.Dominio;
 
 public class Vacuna : IValidable
 {
-    public string Nombre { get; private set; }
-    public string Descripcion { get; private set; }
-    public string Patogeno { get; private set; }
+    public string Nombre { get; set; }
+    public string Descripcion { get; set; }
+    public string Patogeno { get; set; }
 
     public Vacuna() { }
 

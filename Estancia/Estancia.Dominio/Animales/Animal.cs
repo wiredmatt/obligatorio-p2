@@ -2,7 +2,7 @@ namespace Estancia.Dominio;
 
 public abstract class Animal : IValidable
 {
-    public string ID { get; private set; } // Caravana - renombrado a ID para mantener consistencia con otras Entidades.
+    public string ID { get; set; } // Caravana - renombrado a ID para mantener consistencia con otras Entidades.
     public string Raza { get; set; }
     public ESexo Sexo { get; set; }
     public DateTime FechaNacimiento { get; set; }
@@ -11,7 +11,7 @@ public abstract class Animal : IValidable
     public double Peso { get; set; }
     public bool EsHibrido { get; set; }
 
-    public List<Vacunacion> Vacunaciones { get; private set; } = new List<Vacunacion>();
+    public List<Vacunacion> Vacunaciones { get; set; } = new List<Vacunacion>();
 
     public Animal()
     {

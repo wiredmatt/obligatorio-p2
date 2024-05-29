@@ -4,15 +4,15 @@ public abstract class Empleado : IValidable
 {
     private static int UltimoID = 1;
 
-    public int ID { get; private set; }
+    public int ID { get; set; }
 
-    public string Mail { get; private set; }
+    public string Mail { get; set; }
 
-    public string Contrasena { get; private set; }
+    public string Contrasena { get; set; }
 
     public string Nombre { get; set; }
 
-    public DateTime FechaIngreso { get; private set; }
+    public DateTime FechaIngreso { get; set; }
 
     public Empleado()
     {

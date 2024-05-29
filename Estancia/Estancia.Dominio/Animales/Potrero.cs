@@ -3,13 +3,16 @@ namespace Estancia.Dominio;
 public class Potrero : IValidable
 {
     private static int UltimoID = 1;
-    public int ID { get; private set; }
+    public int ID { get; set; }
     public string Descripcion { get; set; }
-    public int Hectareas { get; private set; }
-    public int Capacidad { get; private set; }
-    public List<Animal> Animales { get; private set; } = new List<Animal>();
+    public int Hectareas { get; set; }
+    public int Capacidad { get; set; }
+    public List<Animal> Animales { get; set; } = new List<Animal>();
 
-    public Potrero() { }
+    public Potrero()
+    {
+        ID = UltimoID++;
+    }
 
     public Potrero(string descripcion, int hectareas, int capacidad)
     {
