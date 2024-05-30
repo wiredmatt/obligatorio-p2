@@ -1,0 +1,46 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Potreros";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Potreros</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Ganancia</th>
+                <th scope="col">Hectareas</th>
+                <th scope="col">Cantidad de Animales</th>
+                <th scope="col">Capacidad Máxima</th>
+                <th scope="col">Descripcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Potrero p in ViewBag.Potreros)
+            {
+                <tr>
+                    <th scope="row">
+                        #@p.ID
+                    </th>
+                    <td>
+                        $@p.CalcularGanancia()
+                    </td>
+                    <td>
+                        @p.Hectareas
+                    </td>
+                    <td>
+                        @p.Animales.Count
+                    </td>
+                    <td>
+                        @p.Capacidad
+                    </td>
+                    <td>
+                        @p.Descripcion
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

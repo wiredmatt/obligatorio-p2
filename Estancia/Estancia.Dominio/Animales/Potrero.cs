@@ -1,6 +1,6 @@
 namespace Estancia.Dominio;
 
-public class Potrero : IValidable, IComparable
+public class Potrero : IValidable, IComparable<Potrero>
 {
     private static int UltimoID = 1;
     public int ID { get; set; }
@@ -75,17 +75,20 @@ public class Potrero : IValidable, IComparable
         return $"| #{ID} | {Hectareas} | {Animales.Count} / {Capacidad} | {Descripcion} |";
     }
 
-    public int CompareTo(object? other)
+
+    // Ver listado de todos los potreros ordenados 
+    // por capacidad ascendente y cantidad de animales descendente.
+    public int CompareTo(Potrero? other)
     {
-        Potrero otherPotrero = other as Potrero;
-
-        // Calcular el `peso` de este objeto
-        double thisPeso = Capacidad - Animales.Count;
-
-        // Calcular el `peso` del otro objeto
-        double otherPeso = otherPotrero.Capacidad - otherPotrero.Animales.Count;
-
-        // Comparar los `pesos`
-        return thisPeso.CompareTo(otherPeso);
+        if (Capacidad != other?.Capacidad)
+        {
+            // Ordenar por capacidad ascendente
+            return Capacidad.CompareTo(other?.Capacidad);
+        }
+        else
+        {
+            // Ordenar por cantidad de animales descendente
+            return -Animales.Count.CompareTo(other?.Animales.Count);
+        }
     }
 }

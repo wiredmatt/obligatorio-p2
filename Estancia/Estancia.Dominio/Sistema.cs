@@ -26,6 +26,13 @@ public class Sistema
         Precarga();
     }
 
+    public List<Potrero> GetPotreros()
+    {
+        Potreros.Sort();
+
+        return Potreros;
+    }
+
     public List<Peon> GetPeones()
     {
         List<Peon> peones = new List<Peon>();
