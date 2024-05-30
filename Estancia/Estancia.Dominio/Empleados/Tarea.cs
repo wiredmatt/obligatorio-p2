@@ -1,6 +1,6 @@
 namespace Estancia.Dominio;
 
-public class Tarea : IValidable
+public class Tarea : IValidable, IComparable<Tarea>
 {
     private static int UltimoID = 1;
     public int ID { get; set; }
@@ -69,5 +69,15 @@ public class Tarea : IValidable
             Comentario = comentario;
             FechaCierre = DateTime.Now;
         }
+    }
+
+    public int CompareTo(Tarea? other)
+    {
+        if (other == null)
+        {
+            return 1;
+        }
+
+        return FechaLimite.CompareTo(other.FechaLimite);
     }
 }

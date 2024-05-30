@@ -13,6 +13,23 @@ public class Peon : Empleado
         EsResidente = esResidente;
     }
 
+    public List<Tarea> GetTareasPendientes()
+    {
+        List<Tarea> tareasRet = new List<Tarea>();
+
+        foreach (Tarea t in Tareas)
+        {
+            if (t.Completada)
+            {
+                tareasRet.Add(t);
+            }
+        }
+
+        tareasRet.Sort();
+
+        return tareasRet;
+    }
+
     public void AltaTarea(Tarea tarea)
     {
         tarea.Validar();
