@@ -4,10 +4,10 @@
     ViewData["Title"] = "Perfil de" + (@ViewBag.Peon).Nombre;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Perfil de @ViewBag.Peon.Nombre</h1>
+<div>
+    <h1 class="display-4 text-center">Perfil de @ViewBag.Peon.Nombre</h1>
 
-    <div class="card" style="width: 18rem;">
+    <div class="card border border-secondary p-3 rounded-2 w-25 mx-auto d-block">
         <div class="card-body">
             <h5 class="card-title">Nombre: @ViewBag.Peon.Nombre</h5>
         </div>
@@ -17,7 +17,7 @@
             <li class="list-group-item">Fecha De Ingreso: @ViewBag.Peon.FechaIngreso.ToShortDateString()</li>
         </ul>
         <div class="card-body">
-            @Html.ActionLink("Ver Mis Tareas", "Tareas", "Peones", null, new
+            @Html.ActionLink("Ver Mis Tareas", "MisTareas", "Peones", null, new
                 {
                     @class = "btn btn-primary"
                 })

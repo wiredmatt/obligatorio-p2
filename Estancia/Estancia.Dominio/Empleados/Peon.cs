@@ -24,7 +24,7 @@ public class Peon : Empleado
 
         foreach (Tarea t in Tareas)
         {
-            if (t.Completada)
+            if (!t.Completada)
             {
                 tareasRet.Add(t);
             }

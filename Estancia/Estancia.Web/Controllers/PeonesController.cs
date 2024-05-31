@@ -15,7 +15,7 @@ public class PeonesController : Controller
         _logger = logger;
     }
 
-    public IActionResult Detalle()
+    public IActionResult MiPerfil()
     {
         int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
         if (IDUsuario == null)
@@ -35,8 +35,7 @@ public class PeonesController : Controller
         return View();
     }
 
-    // todo: id viene de la sesion
-    public IActionResult Tareas()
+    public IActionResult MisTareas()
     {
         int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
         if (IDUsuario == null)
@@ -52,7 +51,7 @@ public class PeonesController : Controller
         ViewBag.IDPeon = p.ID;
 
         ViewBag.NombrePeon = p.Nombre;
-        ViewBag.Tareas = p.GetTareasPendientes();
+        ViewBag.TareasPendientes = p.GetTareasPendientes();
 
         return View();
     }

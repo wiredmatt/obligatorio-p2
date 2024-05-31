@@ -35,6 +35,15 @@ public class AutenticacionController : Controller
         HttpContext.Session.SetInt32("IDUsuario", e.ID);
         HttpContext.Session.SetString("RolUsuario", e.GetTipo());
 
-        return Redirect("/Peones/Detalle");
+        return Redirect("/Peones/MiPerfil");
+    }
+
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Remove("IDUsuario");
+        HttpContext.Session.Remove("RolUsuario");
+        HttpContext.Session.Clear();
+
+        return Redirect("/Autenticacion/Login");
     }
 }
