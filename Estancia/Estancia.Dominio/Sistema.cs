@@ -87,7 +87,7 @@ public class Sistema
         if (e != null && e.Contrasena == contrasena) return e;
 
 
-        throw new ErrorDeValidacion("No existe un empleado con las credenciales provistas");
+        throw new ErrorDeValidacion("Credenciales incorrectas.");
     }
 
     public void AltaEmpleado(Empleado e)

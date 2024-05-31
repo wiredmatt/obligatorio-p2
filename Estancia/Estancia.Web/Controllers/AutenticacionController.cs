@@ -18,24 +18,27 @@ public class AutenticacionController : Controller
     }
 
     [HttpPost]
-    public IActionResult Login(Login login)
+    public IActionResult Login(string mail, string contrasena)
     {
-        if (!ModelState.IsValid)
+        try
         {
-            return Redirect("/Autenticacion/Login");
+            Empleado e = Sistema.Instancia.Login(mail, contrasena);
+
+            HttpContext.Session.SetInt32("IDUsuario", e.ID);
+            HttpContext.Session.SetString("RolUsuario", e.GetTipo());
+
+            return e.GetTipo() switch
+            {
+                "Peon" => Redirect("/Peones/MiPerfil"),
+                "Capataz" => Redirect("/Capataces"),
+                _ => View(),
+            };
         }
-
-        Empleado? e = Sistema.Instancia.Login(login.Mail, login.Contrasena);
-
-        if (e == null)
+        catch (Exception err)
         {
-            return Redirect("/Autenticacion/Login");
+            ViewBag.msg = err.Message;
+            return View();
         }
-
-        HttpContext.Session.SetInt32("IDUsuario", e.ID);
-        HttpContext.Session.SetString("RolUsuario", e.GetTipo());
-
-        return Redirect("/Peones/MiPerfil");
     }
 
     public IActionResult Logout()
