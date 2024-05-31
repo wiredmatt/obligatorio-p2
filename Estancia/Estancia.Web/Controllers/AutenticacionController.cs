@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Estancia.Dominio;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Estancia.Web.Controllers;
 

@@ -36,21 +36,23 @@ public class PeonesController : Controller
     }
 
     // todo: id viene de la sesion
-    public IActionResult Tareas(int id)
+    public IActionResult Tareas()
     {
-        Peon? p = Sistema.Instancia.GetPeonPorID(id);
-
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null)
+        {
+            return Redirect("/");
+        }
+        Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
         if (p == null)
         {
             return Redirect("/");
         }
 
-        ViewBag.PeonTareas = new
-        {
-            IDPeon = p.ID,
-            NombrePeon = p.Nombre,
-            Tareas = p.GetTareasPendientes()
-        };
+        ViewBag.IDPeon = p.ID;
+
+        ViewBag.NombrePeon = p.Nombre;
+        ViewBag.Tareas = p.GetTareasPendientes();
 
         return View();
     }
