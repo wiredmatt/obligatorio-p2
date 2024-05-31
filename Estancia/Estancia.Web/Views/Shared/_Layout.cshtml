@@ -31,6 +31,10 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Peones" asp-action="MisTareas">Mis
                                     Tareas</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Peones"
+                                    asp-action="VacunarAnimales">Vacunar Animales</a>
+                            </li>
                         }
 
                         @if (Context.Session.GetInt32("IDUsuario") == null)

@@ -49,7 +49,7 @@ public class PeonesController : Controller
 
         Tarea t = p.GetTarea(id, false);
 
-        if (t == null) return Redirect("/Peones/MisTareas");
+        if (t == null) return RedirectToAction("MisTareas");
 
         return View(t);
     }
@@ -69,14 +69,50 @@ public class PeonesController : Controller
         try
         {
             tarea.Completar(t.Comentario);
-            Console.WriteLine(tarea);
-            return Redirect("/Peones/MisTareas");
+            return RedirectToAction("MisTareas");
         }
         catch (Exception e)
         {
             ViewBag.msg = e.Message;
-            return View(tarea);
+            return RedirectToAction("CompletarTarea", new { id = t.ID });
         }
+    }
+
+    public IActionResult VacunarAnimales()
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+
+        Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
+        if (p == null) return Redirect("/");
+
+        ViewBag.Vacunas = Sistema.Instancia.GetVacunas();
+        ViewBag.Animales = Sistema.Instancia.GetAnimales();
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult VacunarAnimales(string id, [FromForm] string NombreVacuna, [FromForm] string FechaVacuna)
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+
+        Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
+        if (p == null) return Redirect("/");
+
+        Animal? a = Sistema.Instancia.GetAnimalPorID(id);
+        if (a == null) return Redirect("/");
+
+        Vacuna? v = Sistema.Instancia.GetVacunaPorNombre(NombreVacuna);
+        if (v == null) return Redirect("/");
+
+        a.Vacunar(v, DateTime.Parse(FechaVacuna));
+
+        ViewBag.msg = $"Animal #{a.ID} Vacunado con '{v.Nombre}' exitosamente.";
+        ViewBag.Vacunas = Sistema.Instancia.GetVacunas();
+        ViewBag.Animales = Sistema.Instancia.GetAnimales();
+
+        return View();
     }
 
 

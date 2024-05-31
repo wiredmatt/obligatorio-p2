@@ -4,10 +4,10 @@ public class Sistema
 {
     private static Sistema instancia;
 
-    public List<Empleado> Empleados { get; private set; } = new List<Empleado>();
-    public List<Animal> Animales { get; private set; } = new List<Animal>();
-    public List<Potrero> Potreros { get; private set; } = new List<Potrero>();
-    public List<Vacuna> Vacunas { get; private set; } = new List<Vacuna>();
+    private List<Empleado> Empleados { get; set; } = new List<Empleado>();
+    private List<Animal> Animales { get; set; } = new List<Animal>();
+    private List<Potrero> Potreros { get; set; } = new List<Potrero>();
+    private List<Vacuna> Vacunas { get; set; } = new List<Vacuna>();
 
     public static Sistema Instancia
     {
@@ -26,14 +26,29 @@ public class Sistema
         Precarga();
     }
 
-    public List<Potrero> GetPotreros()
+    public IEnumerable<Potrero> GetPotreros()
     {
         Potreros.Sort();
-
         return Potreros;
     }
 
-    public List<Peon> GetPeones()
+    public IEnumerable<Empleado> GetEmpleados() { return Empleados; }
+    public IEnumerable<Vacuna> GetVacunas() { return Vacunas; }
+    public IEnumerable<Animal> GetAnimales() { return Animales; }
+
+    public Animal? GetAnimalPorID(string ID)
+    {
+        foreach (Animal a in Animales) if (a.ID == ID) return a;
+        return null;
+    }
+
+    public Vacuna? GetVacunaPorNombre(string nombre)
+    {
+        foreach (Vacuna v in Vacunas) if (v.Nombre == nombre) return v;
+        return null;
+    }
+
+    public IEnumerable<Peon> GetPeones()
     {
         List<Peon> peones = new List<Peon>();
 
@@ -51,7 +66,7 @@ public class Sistema
 
     public Peon? GetPeonPorID(int ID)
     {
-        List<Peon> peones = GetPeones();
+        IEnumerable<Peon> peones = GetPeones();
 
         foreach (Peon p in peones)
         {
@@ -370,4 +385,5 @@ public class Sistema
         }
         #endregion
     }
+
 }

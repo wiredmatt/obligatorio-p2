@@ -15,7 +15,7 @@ public class CapatacesController : Controller
 
     public IActionResult Peones()
     {
-        List<Peon> peones = Sistema.Instancia.GetPeones();
+        IEnumerable<Peon> peones = Sistema.Instancia.GetPeones();
 
         ViewBag.Peones = peones;
 

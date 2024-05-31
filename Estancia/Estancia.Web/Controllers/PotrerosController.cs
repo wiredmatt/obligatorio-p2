@@ -16,7 +16,7 @@ public class PotrerosController : Controller
 
     public IActionResult Index()
     {
-        List<Potrero> Potreros = Sistema.Instancia.GetPotreros();
+        IEnumerable<Potrero> Potreros = Sistema.Instancia.GetPotreros();
 
         ViewBag.Potreros = Potreros;
 

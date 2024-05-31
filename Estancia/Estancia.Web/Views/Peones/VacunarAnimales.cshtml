@@ -1,0 +1,48 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Vacunar Animal";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Vacunar Animales</h1>
+    @if (ViewBag.msg != null)
+    {
+        <p>@ViewBag.msg</p>
+    }
+    <table class="table w-50 mx-auto">
+        <thead>
+            <tr>
+                <th scope="col">Caravana</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Animal a in ViewBag.Animales)
+            {
+                <tr class="border border-secondary">
+                    <th scope="row" class="w-25">
+                        #@a.ID
+                    </th>
+                    <td class="w-25">
+                        <form method="post" asp-route-id="@a.ID">
+                            <div class="d-flex flex-column">
+                                <label for="NombreVacuna">Seleccione Vacuna</label>
+                                <select required name="NombreVacuna" id="NombreVacuna">
+                                    <option value=""></option>
+                                    @foreach (Vacuna v in ViewBag.Vacunas)
+                                    {
+                                        <option value="@v.Nombre">@v.Nombre</option>
+                                    }
+                                </select>
+                                <label for="FechaVacuna">Seleccione Fecha</label>
+                                <input type="date" required name="FechaVacuna" id="FechaVacuna">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3 w-100">Vacunar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
