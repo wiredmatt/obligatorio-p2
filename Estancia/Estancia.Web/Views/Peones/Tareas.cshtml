@@ -1,11 +1,11 @@
 @using Estancia.Dominio
 
 @{
-    ViewData["Title"] = "Tareas de" + (@ViewBag.Peon).Nombre;
+    ViewData["Title"] = "Tareas de" + (@ViewBag.NombrePeon);
 }
 
 <div class="text-center">
-    <h1 class="display-4">Tareas de @ViewBag.Peon.Nombre</h1>
+    <h1 class="display-4">Tareas de @ViewBag.NombrePeon</h1>
     <table class="table">
         <thead>
             <tr>
@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Tarea t in ViewBag.Peon.Tareas)
+            @foreach (Tarea t in ViewBag.Tareas)
             {
                 <tr>
                     <th scope="row">

@@ -15,18 +15,15 @@ public class PeonesController : Controller
         _logger = logger;
     }
 
-    // public IActionResult Index()
-    // {
-    //     List<Peon> peones = Sistema.Instancia.GetPeones();
-
-    //     ViewBag.Peones = peones;
-
-    //     return View();
-    // }
-
-    public IActionResult Detalle(int id)
+    public IActionResult Detalle()
     {
-        Peon? p = Sistema.Instancia.GetPeonPorID(id);
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null)
+        {
+            return Redirect("/");
+        }
+
+        Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
 
         if (p == null)
         {
@@ -38,6 +35,7 @@ public class PeonesController : Controller
         return View();
     }
 
+    // todo: id viene de la sesion
     public IActionResult Tareas(int id)
     {
         Peon? p = Sistema.Instancia.GetPeonPorID(id);

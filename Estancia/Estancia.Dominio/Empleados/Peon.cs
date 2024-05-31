@@ -4,7 +4,7 @@ public class Peon : Empleado
 {
     public bool EsResidente { get; set; }
 
-    public List<Tarea> Tareas { get; set; } = new List<Tarea>();
+    private List<Tarea> Tareas { get; set; } = new List<Tarea>();
 
     public Peon() { }
 
@@ -13,7 +13,12 @@ public class Peon : Empleado
         EsResidente = esResidente;
     }
 
-    public List<Tarea> GetTareasPendientes()
+    public IEnumerable<Tarea> GetTareas()
+    {
+        return Tareas;
+    }
+
+    public IEnumerable<Tarea> GetTareasPendientes()
     {
         List<Tarea> tareasRet = new List<Tarea>();
 
