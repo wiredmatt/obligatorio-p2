@@ -5,7 +5,6 @@ using Estancia.Dominio;
 
 namespace Estancia.Web.Controllers;
 
-// TODO: Implementar RBAC: a la ruta /peones/detalle/1 solo puede acceder el peon que tenga ID 1
 public class PeonesController : Controller
 {
     private readonly ILogger<PeonesController> _logger;
@@ -18,17 +17,9 @@ public class PeonesController : Controller
     public IActionResult MiPerfil()
     {
         int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
-        if (IDUsuario == null)
-        {
-            return Redirect("/");
-        }
-
+        if (IDUsuario == null) return Redirect("/");
         Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
-
-        if (p == null)
-        {
-            return Redirect("/");
-        }
+        if (p == null) return Redirect("/");
 
         ViewBag.Peon = p;
 
@@ -38,23 +29,56 @@ public class PeonesController : Controller
     public IActionResult MisTareas()
     {
         int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
-        if (IDUsuario == null)
-        {
-            return Redirect("/");
-        }
+        if (IDUsuario == null) return Redirect("/");
         Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
-        if (p == null)
-        {
-            return Redirect("/");
-        }
+        if (p == null) return Redirect("/");
 
         ViewBag.IDPeon = p.ID;
-
         ViewBag.NombrePeon = p.Nombre;
         ViewBag.TareasPendientes = p.GetTareasPendientes();
 
         return View();
     }
+
+    public IActionResult CompletarTarea(int id)
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
+        if (p == null) return Redirect("/");
+
+        Tarea t = p.GetTarea(id, false);
+
+        if (t == null) return Redirect("/Peones/MisTareas");
+
+        return View(t);
+    }
+
+    [HttpPost]
+    public IActionResult CompletarTarea(Tarea t)
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+
+        Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
+        if (p == null) return Redirect("/");
+
+        Tarea? tarea = p.GetTarea(t.ID, false);
+        if (tarea == null) return Redirect("/");
+
+        try
+        {
+            tarea.Completar(t.Comentario);
+            Console.WriteLine(tarea);
+            return Redirect("/Peones/MisTareas");
+        }
+        catch (ErrorDeValidacion e)
+        {
+            ViewBag.msg = e.Message;
+            return View();
+        }
+    }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

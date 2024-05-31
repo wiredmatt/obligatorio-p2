@@ -18,6 +18,26 @@ public class Peon : Empleado
         return Tareas;
     }
 
+    public Tarea? GetTarea(int id)
+    {
+        foreach (Tarea t in Tareas)
+        {
+            if (t.ID == id) return t;
+        }
+
+        return null;
+    }
+
+    public Tarea? GetTarea(int id, bool completada)
+    {
+        foreach (Tarea t in Tareas)
+        {
+            if (t.ID == id && t.Completada == completada) return t;
+        }
+
+        return null;
+    }
+
     public IEnumerable<Tarea> GetTareasPendientes()
     {
         List<Tarea> tareasRet = new List<Tarea>();

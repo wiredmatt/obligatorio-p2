@@ -59,12 +59,18 @@ public class Tarea : IValidable, IComparable<Tarea>
         {
             throw new ErrorDeValidacion(errores);
         }
+
     }
 
     public void Completar(string comentario)
     {
         if (!Completada)
         {
+            if (comentario == null || comentario.Trim() == "")
+            {
+                throw new ErrorDeValidacion("Al completar la tarea, se le debe agregar un comentario");
+            }
+
             Completada = true;
             Comentario = comentario;
             FechaCierre = DateTime.Now;

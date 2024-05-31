@@ -11,12 +11,10 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Descripcion</th>
-                <th scope="col">Completada</th>
-                <th scope="col">Comentario</th>
-                <th scope="col">Fecha Cierre</th>
                 <th scope="col">Fecha Inicio</th>
                 <th scope="col">Fecha Limite</th>
                 <th scope="col">Capataz</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -30,15 +28,6 @@
                         @t.Descripcion
                     </td>
                     <td>
-                        <input onclick="return false;" readonly type="checkbox" checked="@t.Completada">
-                    </td>
-                    <td>
-                        @t.Comentario
-                    </td>
-                    <td>
-                        @(t.FechaCierre == null ? "-" : ((DateTime)t.FechaCierre).ToShortDateString())
-                    </td>
-                    <td>
                         @t.FechaInicio.ToShortDateString()
                     </td>
                     <td>
@@ -46,6 +35,12 @@
                     </td>
                     <td>
                         @t.Capataz.Nombre (#@t.Capataz.ID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Completar", "CompletarTarea", "Peones", new { id = t.ID }, new
+                            {
+                                @class = "btn btn-primary"
+                            })
                     </td>
                 </tr>
             }

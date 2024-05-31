@@ -1,0 +1,22 @@
+@using Estancia.Dominio
+@model Tarea
+
+@{
+    ViewData["Title"] = "Completar Tarea #" + (Model.ID);
+}
+
+<div>
+    <h1 class="display-4 text-center">Completar Tarea #@Model.ID</h1>
+
+    <form method="post" class="card border border-secondary p-3 rounded-2 w-25 mx-auto d-block mt-5">
+        <label for="Comentario">Comentario</label>
+        <textarea asp-for="Comentario" required class="form-control mt-2" autofocus style="min-width: 100%;"></textarea>
+
+        <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+    </form>
+
+    @if (ViewBag.msg != null)
+    {
+        <p>@ViewBag.msg</p>
+    }
+</div>

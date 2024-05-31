@@ -24,8 +24,12 @@
                         @if (Context.Session.GetString("RolUsuario") == "Peon")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Autenticacion"
-                                    asp-action="MiPerfil">Mi Perfil</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Peones" asp-action="MiPerfil">Mi
+                                    Perfil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Peones" asp-action="MisTareas">Mis
+                                    Tareas</a>
                             </li>
                         }
 
