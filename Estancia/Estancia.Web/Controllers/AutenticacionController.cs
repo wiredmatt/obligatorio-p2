@@ -45,6 +45,38 @@ public class AutenticacionController : Controller
         }
     }
 
+    public IActionResult RegistroPeones()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    // no castea "on" | "off" a boolean.
+    public IActionResult RegistroPeones(string mail, string contrasena, string nombre, string esResidente)
+    {
+        try
+        {
+            Peon p = Sistema.Instancia.RegistroPeon(mail, contrasena, nombre, esResidente == "on");
+
+            HttpContext.Session.SetInt32("IDUsuario", p.ID);
+            HttpContext.Session.SetString("RolUsuario", p.GetTipo());
+
+            return Redirect("/Peones/MiPerfil");
+        }
+        catch (Exception err)
+        {
+            // pasar los valores que uso el usuario para pre-popular
+            // su siguiente intento, y no borrarle todo.
+            ViewBag.msg = err.Message;
+            ViewBag.Mail = mail;
+            ViewBag.Contrasena = contrasena;
+            ViewBag.Nombre = nombre;
+            ViewBag.EsResidente = esResidente;
+
+            return View();
+        }
+    }
+
     public IActionResult Logout()
     {
         HttpContext.Session.Remove("IDUsuario");

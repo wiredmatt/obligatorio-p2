@@ -15,6 +15,17 @@
             <li class="list-group-item">ID: #@ViewBag.Peon.ID</li>
             <li class="list-group-item">Mail: @ViewBag.Peon.Mail</li>
             <li class="list-group-item">Fecha De Ingreso: @ViewBag.Peon.FechaIngreso.ToShortDateString()</li>
+            <li class="list-group-item">Residente: @{
+                    if (ViewBag.Peon.EsResidente)
+                    {
+                        <span>Si</span>
+                    }
+                    else
+                    {
+                        <span>No</span>
+                    }
+                }
+            </li>
         </ul>
         <div class="card-body">
             @Html.ActionLink("Ver Mis Tareas", "MisTareas", "Peones", null, new

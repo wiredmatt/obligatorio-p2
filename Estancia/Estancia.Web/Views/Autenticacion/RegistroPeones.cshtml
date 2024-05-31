@@ -1,0 +1,40 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Registro Peones";
+}
+
+<div>
+    <h1 class="display-4 text-center">Registro Peones</h1>
+    <form method="post" class="w-50 mx-auto d-block mt-3 border border-secondary p-3 rounded-2">
+        <div class="form-group">
+            <label for="Mail">Mail</label>
+            <input required autocomplete="Mail" name="Mail" value="@ViewBag.Mail" type="email" class="form-control"
+                id="Mail" placeholder="Ingresa Mail">
+        </div>
+        <div class="form-group mt-3">
+            <label for="Contrasena">Contrasena</label>
+            <input required autocomplete="Contrasena" name="Contrasena" value="@ViewBag.Contrasena" type="password"
+                class="form-control" id="Contrasena" placeholder="Ingresa Contrasena">
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="Nombre">Nombre</label>
+            <input required autocomplete="Nombre" name="Nombre" value="@ViewBag.Nombre" type="text" class="form-control"
+                id="Nombre" placeholder="Ingresa Nombre">
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="EsResidente">Soy Residente</label>
+            <input type="checkbox" name="EsResidente" checked="@ViewBag.EsResidente" id="EsResidente">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Registrarme</button>
+    </form>
+    @if (ViewBag.msg != null)
+    {
+        <div class="w-50 mx-auto d-block">
+            <p>@ViewBag.msg</p>
+        </div>
+    }
+</div>

@@ -58,7 +58,7 @@ class Program
         Console.WriteLine("---------------------------------------------------");
         Console.WriteLine("| Caravana  |  Tipo  |  Sexo  |  Raza  |    Peso    |");
         Console.WriteLine("---------------------------------------------------");
-        foreach (Animal a in Sistema.Instancia.Animales)
+        foreach (Animal a in Sistema.Instancia.GetAnimales())
         {
             string animalStr = a.ToString();
             Console.WriteLine(animalStr);

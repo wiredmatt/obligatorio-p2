@@ -101,8 +101,16 @@ public class Sistema
 
         if (e != null && e.Contrasena == contrasena) return e;
 
-
         throw new ErrorDeValidacion("Credenciales incorrectas.");
+    }
+
+    public Peon? RegistroPeon(string mail, string contrasena, string nombre, bool esResidente)
+    {
+        Peon p = new Peon(mail, contrasena, nombre, DateTime.Now, esResidente);
+        p.Validar();
+        Empleados.Add(p);
+
+        return p;
     }
 
     public void AltaEmpleado(Empleado e)

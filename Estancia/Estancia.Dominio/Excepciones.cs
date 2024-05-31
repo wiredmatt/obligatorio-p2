@@ -21,7 +21,7 @@ public class ErrorDeValidacion : Exception
 
     private static string ListaDeErroresAUnMensaje(List<string> mensajes)
     {
-        string mensajeFinal = "-------------------\n";
+        string mensajeFinal = "\n";
         mensajeFinal += "Errores al validar!\n";
 
         for (int i = 0; i < mensajes.Count; i++)
@@ -30,7 +30,7 @@ public class ErrorDeValidacion : Exception
 
             mensajeFinal += $"[ERROR #{i + 1}]: {mensaje}\n";
         }
-        mensajeFinal += "-------------------\n";
+        mensajeFinal += "\n";
 
         return mensajeFinal;
     }
