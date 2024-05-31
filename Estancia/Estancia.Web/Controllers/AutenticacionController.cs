@@ -36,7 +36,11 @@ public class AutenticacionController : Controller
         }
         catch (Exception err)
         {
+            // pasar los valores que uso el usuario para pre-popular
+            // su siguiente intento, y no borrarle todo.
             ViewBag.msg = err.Message;
+            ViewBag.Mail = mail;
+            ViewBag.Contrasena = contrasena;
             return View();
         }
     }

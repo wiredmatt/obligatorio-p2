@@ -72,10 +72,10 @@ public class PeonesController : Controller
             Console.WriteLine(tarea);
             return Redirect("/Peones/MisTareas");
         }
-        catch (ErrorDeValidacion e)
+        catch (Exception e)
         {
             ViewBag.msg = e.Message;
-            return View();
+            return View(tarea);
         }
     }
 

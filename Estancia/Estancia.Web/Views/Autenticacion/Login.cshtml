@@ -1,3 +1,5 @@
+@using Estancia.Dominio
+
 @{
     ViewData["Title"] = "Login";
 }
@@ -7,21 +9,21 @@
     <form method="post" class="w-50 mx-auto d-block mt-3 border border-secondary p-3 rounded-2">
         <div class="form-group">
             <label for="Mail">Mail</label>
-            <input autocomplete="Mail" name="Mail" type="email" class="form-control" id="Mail"
+            <input autocomplete="Mail" name="Mail" value="@ViewBag.Mail" type="email" class="form-control" id="Mail"
                 placeholder="Ingresa Mail">
         </div>
         <div class="form-group mt-3">
             <label for="Contrasena">Contrasena</label>
-            <input autocomplete="Contrasena" name="Contrasena" type="password" class="form-control" id="Contrasena"
-                placeholder="Ingresa Contrasena">
+            <input autocomplete="Contrasena" name="Contrasena" value="@ViewBag.Contrasena" type="password"
+                class="form-control" id="Contrasena" placeholder="Ingresa Contrasena">
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Login</button>
     </form>
-    <div class="w-50 mx-auto d-block">
-        @if (ViewBag.msg != null)
-        {
+    @if (ViewBag.msg != null)
+    {
+        <div class="w-50 mx-auto d-block">
             <p>@ViewBag.msg</p>
-        }
-    </div>
+        </div>
+    }
 </div>
