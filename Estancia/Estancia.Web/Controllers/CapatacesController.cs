@@ -69,18 +69,33 @@ public class CapatacesController : Controller
         return View();
     }
 
-    // [HttpPost]
-    // [ActionName("AsignarTareaAPeon")]
-    // public IActionResult AsignarTareaAPeonPost(int id)
-    // {
-    //     int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
-    //     if (IDUsuario == null) return Redirect("/");
-    //     Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
-    //     if (c == null) return Redirect("/");
+    [HttpPost]
+    [ActionName("AsignarTareaAPeon")]
+    public IActionResult AsignarTareaAPeon(int id, string descripcion, DateTime fechaInicio, DateTime fechaLimite)
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
+        if (c == null) return Redirect("/");
 
-    //     Peon? p = Sistema.Instancia.GetPeonPorID(id);
-    //     if (p == null) return RedirectToAction("Peones");
+        Peon? p = Sistema.Instancia.GetPeonPorID(id);
+        if (p == null) return RedirectToAction("Peones");
 
-    //     // ... codigo para asignar tarea
-    // }
+        Tarea t = new Tarea(descripcion, fechaInicio, fechaLimite, c);
+
+        try
+        {
+            p.AltaTarea(t);
+            ViewBag.msg = $"Tarea #{t.ID} asignada exitosamente a Peon {p.Nombre} (#{p.ID})";
+        }
+        catch (Exception e)
+        {
+            ViewBag.msg = e.Message;
+        }
+
+        ViewBag.IDPeon = p.ID;
+        ViewBag.NombrePeon = p.Nombre;
+
+        return View();
+    }
 }

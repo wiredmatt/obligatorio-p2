@@ -4,19 +4,31 @@
     ViewData["Title"] = "Asignar Tarea a Peon";
 }
 
-<div class="text-center">
+<div>
     <h1 class="display-4">Asignar Tarea a Peon @ViewBag.NombrePeon (#@ViewBag.IDPeon)</h1>
 
-    <form method="post" asp-route-id="@ViewBag.IDPeon">
+    @if (ViewBag.msg != null)
+    {
+        <p>@ViewBag.msg</p>
+    }
+
+    <form method="post" asp-route-id="@ViewBag.IDPeon" class="mt-3">
         <div class="d-flex flex-column">
+            <input type="hidden" name="ID" id="ID" value="@ViewBag.IDPeon">
+
             <label for="Descripcion">Descripcion</label>
-            <input type="text" required name="Descripcion" id="Descripcion">
+            <textarea required name="Descripcion" id="Descripcion" style="height: 250px;"></textarea>
 
-            <label for="FechaInicio">Fecha Inicio</label>
-            <input type="date" required name="FechaInicio" id="FechaInicio">
-
-            <label for="FechaLimite">Fecha Limite</label>
-            <input type="date" required name="FechaLimite" id="FechaLimite">
+            <div class="d-flex flex-column justify-content-end w-100 mt-3">
+                <div class="w-25">
+                    <label for="FechaInicio">Fecha Inicio</label>
+                    <input type="date" required name="FechaInicio" id="FechaInicio">
+                </div>
+                <div class="w-25 mt-3">
+                    <label for="FechaLimite">Fecha Limite</label>
+                    <input type="date" required name="FechaLimite" id="FechaLimite">
+                </div>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary mt-3 w-100">Asignar Tarea</button>
     </form>
