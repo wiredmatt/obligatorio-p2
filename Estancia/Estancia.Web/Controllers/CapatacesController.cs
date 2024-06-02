@@ -98,4 +98,17 @@ public class CapatacesController : Controller
 
         return View();
     }
+
+    public IActionResult Potreros()
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
+        if (c == null) return Redirect("/");
+
+        IEnumerable<Potrero> Potreros = Sistema.Instancia.GetPotreros();
+        ViewBag.Potreros = Potreros;
+
+        return View();
+    }
 }
