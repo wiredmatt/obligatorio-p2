@@ -79,6 +79,37 @@ public class Sistema
         return null;
     }
 
+    public IEnumerable<Capataz> GetCapataces()
+    {
+        List<Capataz> capataces = new List<Capataz>();
+
+        foreach (Empleado e in Empleados)
+        {
+            if (e.GetTipo() == "Capataz")
+            {
+                Capataz c = e as Capataz;
+                capataces.Add(c);
+            }
+        }
+
+        return capataces;
+    }
+
+    public Capataz? GetCapatazPorID(int ID)
+    {
+        IEnumerable<Capataz> capataces = GetCapataces();
+
+        foreach (Capataz c in capataces)
+        {
+            if (c.ID == ID)
+            {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
     public void AsignarTareaAPeon(Tarea t, int idPeon)
     {
         Peon? p = GetPeonPorID(idPeon) ?? throw new ErrorDeValidacion("No existe un Peon con ese ID");

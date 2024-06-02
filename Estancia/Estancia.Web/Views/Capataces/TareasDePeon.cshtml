@@ -1,0 +1,54 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Tareas de " + @ViewBag.NombrePeon;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Tareas de @ViewBag.NombrePeon (#@ViewBag.IDPeon)</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Completada</th>
+                <th scope="col">Comentario</th>
+                <th scope="col">Fecha Cierre</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha Limite</th>
+                <th scope="col">Capataz</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Tarea t in ViewBag.Tareas)
+            {
+                <tr>
+                    <th scope="row">
+                        #@t.ID
+                    </th>
+                    <td>
+                        @t.Descripcion
+                    </td>
+                    <td>
+                        <input onclick="return false;" readonly type="checkbox" checked="@t.Completada">
+                    </td>
+                    <td>
+                        @t.Comentario
+                    </td>
+                    <td>
+                        @(t.FechaCierre == null ? "-" : ((DateTime)t.FechaCierre).ToShortDateString())
+                    </td>
+                    <td>
+                        @t.FechaInicio.ToShortDateString()
+                    </td>
+                    <td>
+                        @t.FechaLimite.ToShortDateString()
+                    </td>
+                    <td>
+                        @t.Capataz.Nombre (#@t.Capataz.ID)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

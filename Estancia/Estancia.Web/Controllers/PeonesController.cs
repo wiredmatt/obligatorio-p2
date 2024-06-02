@@ -14,6 +14,16 @@ public class PeonesController : Controller
         _logger = logger;
     }
 
+    public IActionResult Index()
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
+        if (p == null) return Redirect("/");
+
+        return View();
+    }
+
     public IActionResult MiPerfil()
     {
         int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");

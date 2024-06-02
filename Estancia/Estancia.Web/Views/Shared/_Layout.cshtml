@@ -37,6 +37,14 @@
                             </li>
                         }
 
+                        @if (Context.Session.GetString("RolUsuario") == "Capataz")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataces"
+                                    asp-action="Peones">Listado De Peones</a>
+                            </li>
+                        }
+
                         @if (Context.Session.GetInt32("IDUsuario") == null)
                         {
                             <li class="nav-item">

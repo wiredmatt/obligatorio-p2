@@ -3,7 +3,6 @@ using Estancia.Dominio;
 
 namespace Estancia.Web.Controllers;
 
-// TODO: Implementar RBAC: a la ruta /peones/detalle/1 solo puede acceder el peon que tenga ID 1
 public class CapatacesController : Controller
 {
     private readonly ILogger<CapatacesController> _logger;
@@ -13,18 +12,35 @@ public class CapatacesController : Controller
         _logger = logger;
     }
 
-    public IActionResult Peones()
+    public IActionResult Index()
     {
-        IEnumerable<Peon> peones = Sistema.Instancia.GetPeones();
-
-        ViewBag.Peones = peones;
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
+        if (c == null) return Redirect("/");
 
         return View();
     }
 
-    [Route("/Capataces/Peones/{id}/Tareas")]
-    public IActionResult PeonesTareas(int id)
+    public IActionResult Peones()
     {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
+        if (c == null) return Redirect("/");
+
+        ViewBag.Peones = Sistema.Instancia.GetPeones();
+
+        return View();
+    }
+
+    public IActionResult TareasDePeon(int id)
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
+        if (c == null) return Redirect("/");
+
         Peon? p = Sistema.Instancia.GetPeonPorID(id);
 
         if (p == null)
@@ -32,12 +48,9 @@ public class CapatacesController : Controller
             return Redirect("/");
         }
 
-        ViewBag.PeonTareas = new
-        {
-            IDPeon = p.ID,
-            NombrePeon = p.Nombre,
-            Tareas = p.GetTareas()
-        };
+        ViewBag.IDPeon = p.ID;
+        ViewBag.NombrePeon = p.Nombre;
+        ViewBag.Tareas = p.GetTareas();
 
         return View();
     }

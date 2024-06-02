@@ -23,7 +23,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Autenticacion}/{action=Login}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.UseSession(new SessionOptions
 {
