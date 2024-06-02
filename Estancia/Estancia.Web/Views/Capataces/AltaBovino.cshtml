@@ -1,0 +1,65 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Alta de Bovino";
+}
+
+<div>
+    <h1 class="text-center display-4">Alta de Bovino</h1>
+
+    @if (ViewBag.msg != null)
+    {
+        <p>@ViewBag.msg</p>
+    }
+
+    <form method="post" class="w-50 mx-auto d-block mt-3 border border-secondary p-3 rounded-2">
+        <div class="form-group">
+            <label for="ID">Caravana</label>
+            <input required name="ID" value="@ViewBag.Bovino?.ID" type="text" class="form-control" id="ID"
+                placeholder="Ingresa Caravana">
+        </div>
+        <div class="form-group mt-3">
+            <label for="Raza">Raza</label>
+            <input required autocomplete="Raza" name="Raza" value="@ViewBag.Bovino?.Raza" type="text"
+                class="form-control" id="Contrasena" placeholder="Ingresa Raza">
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="Sexo">Sexo</label>
+            <select name="Sexo" id="Sexo" required>
+                <option value="1" selected="@ViewBag.Bovino?.Sexo == @ESexo.Hembra">Hembra</option>
+                <option value="0" selected="@ViewBag.Bovino?.Sexo == @ESexo.Macho">Macho</option>
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="FechaNacimiento">Fecha Nacimiento</label>
+            <input type="date" required name="FechaNacimiento" id="FechaNacimiento"
+                value="@ViewBag.Bovino?.FechaNacimiento?.ToString("yyyy-MM-dd")">
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="CostoAdquisicion">Costo Adquisicion</label>
+            <input type="number" required name="CostoAdquisicion" id="CostoAdquisicion"
+                value="@ViewBag.Bovino?.CostoAdquisicion">
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="CostoAlimentacion">Costo Alimentacion</label>
+            <input type="number" required name="CostoAlimentacion" id="CostoAlimentacion"
+                value="@ViewBag.Bovino?.CostoAlimentacion">
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="Peso">Peso</label>
+            <input type="number" required name="Peso" id="Peso" value="@ViewBag.Bovino?.Peso">
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="EsHibrido">Es Hibrido</label>
+            <input type="checkbox" name="EsHibrido" checked="@ViewBag.Bovino?.EsHibrido" id="EsHibrido">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Registrarme</button>
+    </form>
+</div>

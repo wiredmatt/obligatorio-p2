@@ -152,4 +152,42 @@ public class CapatacesController : Controller
         ViewBag.Potreros = Sistema.Instancia.GetPotreros();
         return View();
     }
+
+    public IActionResult AltaBovino()
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
+        if (c == null) return Redirect("/");
+
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult AltaBovino(string id, string raza, int sexo, DateTime fechaNacimiento, double costoAdquisicion, double costoAlimentacion, double peso, string esHibrido, int alimentacion)
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
+        if (c == null) return Redirect("/");
+
+        ESexo sexoParsed = sexo == 0 ? ESexo.Macho : ESexo.Hembra;
+        EAlimentacion alimentacionParsed = alimentacion == 0 ? EAlimentacion.Pastura : EAlimentacion.Grano;
+        bool esHibridoParsed = esHibrido == "on";
+
+        Bovino b = new Bovino(id, raza, sexoParsed, fechaNacimiento, costoAdquisicion, costoAlimentacion, peso, esHibridoParsed, alimentacionParsed);
+
+        try
+        {
+            Sistema.Instancia.AltaAnimal(b);
+            ViewBag.msg = $"Bovino {b.ID} dado de alta exitosamente.";
+        }
+        catch (Exception e)
+        {
+            ViewBag.Bovino = b;
+            ViewBag.msg = e.Message;
+        }
+
+        return View();
+    }
 }
