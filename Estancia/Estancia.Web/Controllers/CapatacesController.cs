@@ -111,4 +111,45 @@ public class CapatacesController : Controller
 
         return View();
     }
+
+    public IActionResult AsignarAnimales()
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
+        if (c == null) return Redirect("/");
+
+        ViewBag.Animales = Sistema.Instancia.GetAnimalesLibres();
+        ViewBag.Potreros = Sistema.Instancia.GetPotreros();
+
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult AsignarAnimales(string idAnimal, int idPotrero)
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
+        if (c == null) return Redirect("/");
+
+        Animal? a = Sistema.Instancia.GetAnimalPorID(idAnimal);
+        if (a == null) return RedirectToAction("AsignarAnimales");
+        Potrero? p = Sistema.Instancia.GetPotreroPorID(idPotrero);
+        if (p == null) return RedirectToAction("AsignarAnimales");
+
+        try
+        {
+            p.AgregarAnimal(a);
+            ViewBag.msg = $"Animal #{a.ID} Asignado a Potrero #{p.ID} exitosamente.";
+        }
+        catch (Exception e)
+        {
+            ViewBag.msg = e.Message;
+        }
+
+        ViewBag.Animales = Sistema.Instancia.GetAnimalesLibres();
+        ViewBag.Potreros = Sistema.Instancia.GetPotreros();
+        return View();
+    }
 }

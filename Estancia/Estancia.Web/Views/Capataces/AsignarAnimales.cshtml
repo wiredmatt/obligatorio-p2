@@ -1,0 +1,49 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Asignar Animales";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Asignar Animales Libres</h1>
+
+    @if (ViewBag.msg != null)
+    {
+        <p>@ViewBag.msg</p>
+    }
+
+    <table class="table w-50 mx-auto">
+        <thead>
+            <tr>
+                <th scope="col">Caravana</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Animal a in ViewBag.Animales)
+            {
+                <tr class="border border-secondary">
+                    <th scope="row" class="w-25">
+                        #@a.ID
+                    </th>
+                    <td class="w-25 border border-secondary">
+                        <form method="post">
+                            <div class="d-flex flex-column">
+                                <input type="hidden" name="IDAnimal" id="IDAnimal" value="@a.ID">
+                                <label for="IDPotrero">Seleccione Potrero</label>
+                                <select required name="IDPotrero" id="IDPotrero">
+                                    <option value=""></option>
+                                    @foreach (Potrero p in ViewBag.Potreros)
+                                    {
+                                        <option value="@p.ID">@p.Descripcion (@p.Animales.Count / @p.Capacidad)</option>
+                                    }
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3 w-100">Asignar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

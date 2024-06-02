@@ -10,6 +10,7 @@ public abstract class Animal : IValidable
     public double CostoAlimentacion { get; set; }
     public double Peso { get; set; }
     public bool EsHibrido { get; set; }
+    public bool EstaLibre { get; set; } = true;
 
     public List<Vacunacion> Vacunaciones { get; set; } = new List<Vacunacion>();
 

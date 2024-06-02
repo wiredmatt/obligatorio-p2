@@ -49,8 +49,11 @@ public class Potrero : IValidable, IComparable<Potrero>
 
     public void AgregarAnimal(Animal animal)
     {
+        if (!animal.EstaLibre) throw new ErrorDeValidacion("El animal ya está asignado a un Potrero");
+
         if (Animales.Count < Capacidad)
         {
+            animal.EstaLibre = false;
             Animales.Add(animal);
         }
         else

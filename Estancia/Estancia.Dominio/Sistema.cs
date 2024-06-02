@@ -196,6 +196,21 @@ public class Sistema
         Animales.Add(animal);
     }
 
+    public IEnumerable<Animal> GetAnimalesLibres()
+    {
+        List<Animal> animales = new List<Animal>();
+
+        foreach (Animal a in Animales)
+        {
+            if (a.EstaLibre)
+            {
+                animales.Add(a);
+            }
+        }
+
+        return animales;
+    }
+
     public void AltaPotrero(Potrero p)
     {
         p.Validar();
@@ -224,6 +239,13 @@ public class Sistema
 
         return potreros;
     }
+
+    public Potrero? GetPotreroPorID(int ID)
+    {
+        foreach (Potrero p in Potreros) if (p.ID == ID) return p;
+        return null;
+    }
+
 
     public static void EstablecerPrecioLana(double precio)
     {
@@ -412,6 +434,7 @@ public class Sistema
         Bovino bovino29 = new Bovino("B29GR001", "Gyr", ESexo.Macho, new DateTime(2020, 2, 18), 1550, 520, 310, false, EAlimentacion.Grano);
         Bovino bovino30 = new Bovino("B30JS002", "Jersey", ESexo.Hembra, new DateTime(2019, 6, 8), 1600, 550, 320, false, EAlimentacion.Pastura);
 
+
         List<Bovino> bovinos = new List<Bovino> { bovino1, bovino2, bovino3, bovino4, bovino5, bovino6, bovino7, bovino8, bovino9, bovino10,
                                                       bovino11, bovino12, bovino13, bovino14, bovino15, bovino16, bovino17, bovino18, bovino19, bovino20,
                                                       bovino21, bovino22, bovino23, bovino24, bovino25, bovino26, bovino27, bovino28, bovino29, bovino30 };
@@ -421,15 +444,23 @@ public class Sistema
             b.Vacunar(vacunasBovinos[0], new DateTime(2023, 10, 10));
             AltaAnimal(b);
 
-            if (b.ID.EndsWith('1'))
-            {
-                potrero3.AgregarAnimal(b);
-            }
-            else
-            {
-                potrero4.AgregarAnimal(b);
-            }
+            potrero10.AgregarAnimal(b);
+
+            // if (b.ID.EndsWith('1'))
+            // {
+            //     potrero3.AgregarAnimal(b);
+            // }
+            // else
+            // {
+            //     potrero4.AgregarAnimal(b);
+            // }
         }
+
+        Bovino bovino31 = new Bovino("BL3LS001", "Holstein", ESexo.Hembra, new DateTime(2021, 5, 10), 1550, 520, 410, true, EAlimentacion.Pastura);
+        Bovino bovino32 = new Bovino("BL3LS002", "Simmental", ESexo.Macho, new DateTime(2020, 2, 3), 1600, 550, 300, true, EAlimentacion.Grano);
+
+        AltaAnimal(bovino31);
+        AltaAnimal(bovino32);
         #endregion
     }
 
