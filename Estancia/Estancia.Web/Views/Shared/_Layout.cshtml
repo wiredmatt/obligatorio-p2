@@ -24,15 +24,15 @@
                         @if (Context.Session.GetString("RolUsuario") == "Peon")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Peones" asp-action="MiPerfil">Mi
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Peon" asp-action="MiPerfil">Mi
                                     Perfil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Peones" asp-action="MisTareas">Mis
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Peon" asp-action="MisTareas">Mis
                                     Tareas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Peones"
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Peon"
                                     asp-action="VacunarAnimales">Vacunar Animales</a>
                             </li>
                         }
@@ -40,23 +40,23 @@
                         @if (Context.Session.GetString("RolUsuario") == "Capataz")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataces"
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataz"
                                     asp-action="Peones">Listado De Peones</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataces"
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataz"
                                     asp-action="Potreros">Listado De Potreros</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataces"
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataz"
                                     asp-action="AsignarAnimales">Asignar Animales</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataces"
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataz"
                                     asp-action="AltaBovino">Alta de Bovino</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataces"
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Capataz"
                                     asp-action="BuscarAnimales">Buscar Animales</a>
                             </li>
                         }

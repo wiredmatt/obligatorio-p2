@@ -16,7 +16,7 @@ public class HomeController : Controller
         string? RolUsuario = HttpContext.Session.GetString("RolUsuario");
         if (RolUsuario == null) return View();
 
-        if (RolUsuario == "Capataz") return Redirect("/Capataces/Index");
-        else return Redirect("/Peones/Index");
+        if (RolUsuario == "Capataz") return Redirect("/Capataz/Index");
+        else return Redirect("/Peon/Index");
     }
 }

@@ -33,11 +33,11 @@
                         @p.FechaIngreso.ToShortDateString()
                     </td>
                     <td>
-                        @Html.ActionLink("Ver Tareas", "TareasDePeon", "Capataces", new { id = p.ID }, new
+                        @Html.ActionLink("Ver Tareas", "TareasDePeon", "Capataz", new { id = p.ID }, new
                             {
                                 @class = "btn btn-primary"
                             })
-                        @Html.ActionLink("Asignar Tarea", "AsignarTareaAPeon", "Capataces", new { id = p.ID }, new
+                        @Html.ActionLink("Asignar Tarea", "AsignarTareaAPeon", "Capataz", new { id = p.ID }, new
                             {
                                 @class = "btn btn-info"
                             })

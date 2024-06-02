@@ -29,8 +29,8 @@ public class AutenticacionController : Controller
 
             return e.GetTipo() switch
             {
-                "Peon" => Redirect("/Peones/Index"),
-                "Capataz" => Redirect("/Capataces/Index"),
+                "Peon" => Redirect("/Peon/Index"),
+                "Capataz" => Redirect("/Capataz/Index"),
                 _ => View(),
             };
         }
@@ -61,7 +61,7 @@ public class AutenticacionController : Controller
             HttpContext.Session.SetInt32("IDUsuario", p.ID);
             HttpContext.Session.SetString("RolUsuario", p.GetTipo());
 
-            return Redirect("/Peones/Index");
+            return Redirect("/Peon/Index");
         }
         catch (Exception err)
         {

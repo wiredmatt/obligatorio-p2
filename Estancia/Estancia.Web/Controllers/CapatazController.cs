@@ -3,11 +3,11 @@ using Estancia.Dominio;
 
 namespace Estancia.Web.Controllers;
 
-public class CapatacesController : Controller
+public class CapatazController : Controller
 {
-    private readonly ILogger<CapatacesController> _logger;
+    private readonly ILogger<CapatazController> _logger;
 
-    public CapatacesController(ILogger<CapatacesController> logger)
+    public CapatazController(ILogger<CapatazController> logger)
     {
         _logger = logger;
     }

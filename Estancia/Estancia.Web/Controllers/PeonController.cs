@@ -5,11 +5,11 @@ using Estancia.Dominio;
 
 namespace Estancia.Web.Controllers;
 
-public class PeonesController : Controller
+public class PeonController : Controller
 {
-    private readonly ILogger<PeonesController> _logger;
+    private readonly ILogger<PeonController> _logger;
 
-    public PeonesController(ILogger<PeonesController> logger)
+    public PeonController(ILogger<PeonController> logger)
     {
         _logger = logger;
     }
