@@ -1,0 +1,70 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Buscar Animales";
+}
+
+<div>
+    <h1 class="text-center display-4">Buscar Animales</h1>
+
+    <form method="get">
+        <div class="form-group">
+            <label for="Tipo">Tipo</label>
+            <select name="Tipo" id="Tipo" required>
+                @{
+                    if (ViewBag.Tipo == "Ovino")
+                    {
+                        <option value="Ovino" selected>Ovino</option>
+                        <option value="Bovino">Bovino</option>
+                    }
+                    else
+                    {
+                        <option value="Ovino">Ovino</option>
+                        <option value="Bovino" selected>Bovino</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="Peso">Peso</label>
+            <input type="number" required name="Peso" id="Peso" value="@ViewBag.Peso">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Caravana</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Ganancia</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Animal a in ViewBag.Animales)
+            {
+                <tr>
+                    <th scope="row">
+                        #@a.ID
+                    </th>
+                    <td>
+                        @a.GetTipo()
+                    </td>
+                    <td>
+                        @a.Peso kg
+                    </td>
+                    <td>
+                        @(a.Sexo == 0 ? "Macho" : "Hembra")
+                    </td>
+                    <td>
+                        $@a.GetPrecioVenta()
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

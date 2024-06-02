@@ -211,6 +211,21 @@ public class Sistema
         return animales;
     }
 
+    public IEnumerable<Animal> GetAnimalesPorTipoYPeso(string tipo, double peso)
+    {
+        List<Animal> animales = new List<Animal>();
+
+        foreach (Animal a in Animales)
+        {
+            if (a.GetTipo() == tipo && a.Peso > peso)
+            {
+                animales.Add(a);
+            }
+        }
+
+        return animales;
+    }
+
     public void AltaPotrero(Potrero p)
     {
         p.Validar();

@@ -27,8 +27,18 @@
         <div class="form-group mt-3">
             <label for="Sexo">Sexo</label>
             <select name="Sexo" id="Sexo" required>
-                <option value="1" selected="@ViewBag.Bovino?.Sexo == @ESexo.Hembra">Hembra</option>
-                <option value="0" selected="@ViewBag.Bovino?.Sexo == @ESexo.Macho">Macho</option>
+                @{
+                    if (ViewBag.Bovino?.Sexo == ESexo.Hembra)
+                    {
+                        <option value="0">Macho</option>
+                        <option value="1" selected>Hembra</option>
+                    }
+                    else
+                    {
+                        <option value="0" selected>Macho</option>
+                        <option value="1">Hembra</option>
+                    }
+                }
             </select>
         </div>
 
@@ -60,6 +70,6 @@
             <input type="checkbox" name="EsHibrido" checked="@ViewBag.Bovino?.EsHibrido" id="EsHibrido">
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Registrarme</button>
+        <button type="submit" class="btn btn-primary mt-3">Dar de alta</button>
     </form>
 </div>

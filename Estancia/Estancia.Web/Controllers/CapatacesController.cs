@@ -190,4 +190,26 @@ public class CapatacesController : Controller
 
         return View();
     }
+
+    public IActionResult BuscarAnimales(string? tipo, double? peso)
+    {
+        int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
+        if (IDUsuario == null) return Redirect("/");
+        Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
+        if (c == null) return Redirect("/");
+
+        ViewBag.Tipo = tipo;
+        ViewBag.Peso = peso;
+
+        if (tipo != null && peso != null)
+        {
+            ViewBag.Animales = Sistema.Instancia.GetAnimalesPorTipoYPeso(tipo, (double)peso);
+        }
+        else
+        {
+            ViewBag.Animales = new List<Animal>();
+        }
+
+        return View();
+    }
 }
