@@ -1,0 +1,23 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Asignar Tarea a Peon";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Asignar Tarea a Peon @ViewBag.NombrePeon (#@ViewBag.IDPeon)</h1>
+
+    <form method="post" asp-route-id="@ViewBag.IDPeon">
+        <div class="d-flex flex-column">
+            <label for="Descripcion">Descripcion</label>
+            <input type="text" required name="Descripcion" id="Descripcion">
+
+            <label for="FechaInicio">Fecha Inicio</label>
+            <input type="date" required name="FechaInicio" id="FechaInicio">
+
+            <label for="FechaLimite">Fecha Limite</label>
+            <input type="date" required name="FechaLimite" id="FechaLimite">
+        </div>
+        <button type="submit" class="btn btn-primary mt-3 w-100">Asignar Tarea</button>
+    </form>
+</div>

@@ -102,7 +102,7 @@ public class PeonesController : Controller
     }
 
     [HttpPost]
-    public IActionResult VacunarAnimales(string id, [FromForm] string NombreVacuna, [FromForm] string FechaVacuna)
+    public IActionResult VacunarAnimales(string id, string NombreVacuna, DateTime FechaVacuna)
     {
         int? IDUsuario = HttpContext.Session.GetInt32("IDUsuario");
         if (IDUsuario == null) return Redirect("/");
@@ -116,9 +116,16 @@ public class PeonesController : Controller
         Vacuna? v = Sistema.Instancia.GetVacunaPorNombre(NombreVacuna);
         if (v == null) return Redirect("/");
 
-        a.Vacunar(v, DateTime.Parse(FechaVacuna));
+        try
+        {
+            a.Vacunar(v, FechaVacuna);
+            ViewBag.msg = $"Animal #{a.ID} Vacunado con la vacuna '{v.Nombre}' exitosamente.";
+        }
+        catch (Exception e)
+        {
+            ViewBag.msg = e.Message;
+        }
 
-        ViewBag.msg = $"Animal #{a.ID} Vacunado con '{v.Nombre}' exitosamente.";
         ViewBag.Vacunas = Sistema.Instancia.GetVacunas();
         ViewBag.Animales = Sistema.Instancia.GetAnimales();
 
