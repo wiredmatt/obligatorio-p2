@@ -116,7 +116,7 @@ public class Sistema
         p.AltaTarea(t);
     }
 
-    public Empleado? BuscarEmpleadoPorEmail(string email)
+    public Empleado? GetEmpleadoPorEmail(string email)
     {
         foreach (Empleado e in Empleados)
         {
@@ -128,7 +128,7 @@ public class Sistema
 
     public Empleado? Login(string email, string contrasena)
     {
-        Empleado? e = BuscarEmpleadoPorEmail(email);
+        Empleado? e = GetEmpleadoPorEmail(email);
 
         if (e != null && e.Contrasena == contrasena) return e;
 
@@ -140,7 +140,7 @@ public class Sistema
         Peon p = new Peon(mail, contrasena, nombre, DateTime.Now, esResidente);
         p.Validar();
 
-        Empleado yaExistente = BuscarEmpleadoPorEmail(mail);
+        Empleado yaExistente = GetEmpleadoPorEmail(mail);
 
         if (yaExistente != null)
         {
@@ -156,7 +156,7 @@ public class Sistema
     {
         e.Validar();
 
-        Empleado? empleadoYaExistente = BuscarEmpleadoPorEmail(e.Mail);
+        Empleado? empleadoYaExistente = GetEmpleadoPorEmail(e.Mail);
 
         if (empleadoYaExistente != null)
         {
@@ -166,27 +166,11 @@ public class Sistema
         Empleados.Add(e);
     }
 
-    public Animal? BuscarAnimalPorID(string id)
-    {
-        Animal? animal = null;
-
-        foreach (Animal a in Animales)
-        {
-            if (a.ID == id)
-            {
-                animal = a;
-                break;
-            }
-        }
-
-        return animal;
-    }
-
     public void AltaAnimal(Animal animal)
     {
         animal.Validar();
 
-        Animal? animalYaExistente = BuscarAnimalPorID(animal.ID);
+        Animal? animalYaExistente = GetAnimalPorID(animal.ID);
 
         if (animalYaExistente != null)
         {
@@ -238,7 +222,7 @@ public class Sistema
         Vacunas.Add(v);
     }
 
-    public List<Potrero> BuscarPotreros(int hectareas, int capacidad)
+    public IEnumerable<Potrero> GetPotreros(int hectareas, int capacidad)
     {
         List<Potrero> potreros = new List<Potrero>();
 
@@ -260,7 +244,6 @@ public class Sistema
         foreach (Potrero p in Potreros) if (p.ID == ID) return p;
         return null;
     }
-
 
     public static void EstablecerPrecioLana(double precio)
     {

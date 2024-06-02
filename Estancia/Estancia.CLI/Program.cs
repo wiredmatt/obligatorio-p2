@@ -27,7 +27,7 @@ class Program
                     ListarAnimales();
                     break;
                 case 2:
-                    BuscarPotreros();
+                    GetPotreros();
                     break;
                 case 3:
                     Console.Clear();
@@ -66,7 +66,7 @@ class Program
         }
     }
 
-    public static void BuscarPotreros()
+    public static void GetPotreros()
     {
         Console.Clear();
         Console.WriteLine("BUSQUEDA DE POTREROS");
@@ -75,7 +75,7 @@ class Program
         int hectareas = LeerNumeroEntero("Ingrese número de hectareas:");
         int capacidad = LeerNumeroEntero("Ingrese capacidad:");
 
-        List<Potrero> potreros = Sistema.Instancia.BuscarPotreros(hectareas, capacidad);
+        List<Potrero> potreros = Sistema.Instancia.GetPotreros(hectareas, capacidad);
 
         Console.WriteLine("Potreros encontrados:");
         Console.WriteLine("-----------------------------------------------------------------");
@@ -101,7 +101,7 @@ class Program
         while (!caravanaLibre)
         {
             id = LeerString("Ingrese la caravana:", Config.CANTIDAD_CARACTERES_CARAVANA_ANIMAL, Config.CANTIDAD_CARACTERES_CARAVANA_ANIMAL, true);
-            caravanaLibre = Sistema.Instancia.BuscarAnimalPorID(id) == null;
+            caravanaLibre = Sistema.Instancia.GetAnimalPorID(id) == null;
 
             if (!caravanaLibre)
             {
