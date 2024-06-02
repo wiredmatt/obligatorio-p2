@@ -442,16 +442,14 @@ public class Sistema
             b.Vacunar(vacunasBovinos[0], new DateTime(2023, 10, 10));
             AltaAnimal(b);
 
-            potrero10.AgregarAnimal(b);
-
-            // if (b.ID.EndsWith('1'))
-            // {
-            //     potrero3.AgregarAnimal(b);
-            // }
-            // else
-            // {
-            //     potrero4.AgregarAnimal(b);
-            // }
+            if (b.ID.EndsWith('1'))
+            {
+                potrero3.AgregarAnimal(b);
+            }
+            else
+            {
+                potrero4.AgregarAnimal(b);
+            }
         }
 
         Bovino bovino31 = new Bovino("BL3LS001", "Holstein", ESexo.Hembra, new DateTime(2021, 5, 10), 1550, 520, 410, true, EAlimentacion.Pastura);

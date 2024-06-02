@@ -75,7 +75,7 @@ class Program
         int hectareas = LeerNumeroEntero("Ingrese número de hectareas:");
         int capacidad = LeerNumeroEntero("Ingrese capacidad:");
 
-        List<Potrero> potreros = Sistema.Instancia.GetPotreros(hectareas, capacidad);
+        IEnumerable<Potrero> potreros = Sistema.Instancia.GetPotreros(hectareas, capacidad);
 
         Console.WriteLine("Potreros encontrados:");
         Console.WriteLine("-----------------------------------------------------------------");

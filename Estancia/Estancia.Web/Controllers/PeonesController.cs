@@ -57,7 +57,7 @@ public class PeonesController : Controller
         Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
         if (p == null) return Redirect("/");
 
-        Tarea t = p.GetTarea(id, false);
+        Tarea t = p.GetTareaPorID(id, false);
 
         if (t == null) return RedirectToAction("MisTareas");
 
@@ -73,7 +73,7 @@ public class PeonesController : Controller
         Peon? p = Sistema.Instancia.GetPeonPorID((int)IDUsuario);
         if (p == null) return Redirect("/");
 
-        Tarea? tarea = p.GetTarea(t.ID, false);
+        Tarea? tarea = p.GetTareaPorID(t.ID, false);
         if (tarea == null) return Redirect("/");
 
         try

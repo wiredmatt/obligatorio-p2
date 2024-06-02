@@ -18,7 +18,7 @@ public class Peon : Empleado
         return Tareas;
     }
 
-    public Tarea? GetTarea(int id)
+    public Tarea? GetTareaPorID(int id)
     {
         foreach (Tarea t in Tareas)
         {
@@ -28,7 +28,7 @@ public class Peon : Empleado
         return null;
     }
 
-    public Tarea? GetTarea(int id, bool completada)
+    public Tarea? GetTareaPorID(int id, bool completada)
     {
         foreach (Tarea t in Tareas)
         {
