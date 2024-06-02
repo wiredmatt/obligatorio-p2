@@ -29,7 +29,7 @@ public class AutenticacionController : Controller
 
             return e.GetTipo() switch
             {
-                "Peon" => Redirect("/Peones/MiPerfil"),
+                "Peon" => RedirectToAction("MiPerfil"),
                 "Capataz" => Redirect("/Capataces"),
                 _ => View(),
             };
@@ -61,7 +61,7 @@ public class AutenticacionController : Controller
             HttpContext.Session.SetInt32("IDUsuario", p.ID);
             HttpContext.Session.SetString("RolUsuario", p.GetTipo());
 
-            return Redirect("/Peones/MiPerfil");
+            return RedirectToAction("MiPerfil");
         }
         catch (Exception err)
         {
@@ -71,7 +71,7 @@ public class AutenticacionController : Controller
             ViewBag.Mail = mail;
             ViewBag.Contrasena = contrasena;
             ViewBag.Nombre = nombre;
-            ViewBag.EsResidente = esResidente;
+            ViewBag.EsResidente = "on";
 
             return View();
         }

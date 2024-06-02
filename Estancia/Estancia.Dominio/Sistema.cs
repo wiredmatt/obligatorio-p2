@@ -108,6 +108,14 @@ public class Sistema
     {
         Peon p = new Peon(mail, contrasena, nombre, DateTime.Now, esResidente);
         p.Validar();
+
+        Empleado yaExistente = BuscarEmpleadoPorEmail(mail);
+
+        if (yaExistente != null)
+        {
+            throw new ErrorDeValidacion("Ya existe un empleado registrado con ese mail");
+        }
+
         Empleados.Add(p);
 
         return p;
