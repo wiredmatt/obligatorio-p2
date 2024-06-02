@@ -80,15 +80,12 @@ public class Potrero : IValidable, IComparable<Potrero>
     // por capacidad ascendente y cantidad de animales descendente.
     public int CompareTo(Potrero? other)
     {
-        if (Capacidad != other?.Capacidad)
-        {
-            // Ordenar por capacidad ascendente
-            return Capacidad.CompareTo(other?.Capacidad);
-        }
-        else
-        {
-            // Ordenar por cantidad de animales descendente
-            return -Animales.Count.CompareTo(other?.Animales.Count);
-        }
+        if (other == null) return 1;
+
+        int capCompare = Capacidad.CompareTo(other.Capacidad);
+
+        // si tienen la misma capacidad, comparar por cantidad de animales
+        if (capCompare == 0) return other.Animales.Count.CompareTo(Animales.Count);
+        else return capCompare;
     }
 }
