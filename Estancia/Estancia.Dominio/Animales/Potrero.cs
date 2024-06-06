@@ -26,7 +26,7 @@ public class Potrero : IValidable, IComparable<Potrero>
     {
         List<string> errores = new List<string>();
 
-        if (string.IsNullOrWhiteSpace(Descripcion))
+        if (Validadores.EsStringVacio(Descripcion))
         {
             errores.Add("La descripción no puede estar vacía");
         }
