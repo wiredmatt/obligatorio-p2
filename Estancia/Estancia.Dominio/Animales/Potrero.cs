@@ -7,7 +7,7 @@ public class Potrero : IValidable, IComparable<Potrero>
     public string Descripcion { get; set; }
     public int Hectareas { get; set; }
     public int Capacidad { get; set; }
-    public List<Animal> Animales { get; set; } = new List<Animal>();
+    private List<Animal> Animales { get; set; } = new List<Animal>();
 
     public Potrero()
     {
@@ -20,6 +20,11 @@ public class Potrero : IValidable, IComparable<Potrero>
         Descripcion = descripcion;
         Hectareas = hectareas;
         Capacidad = capacidad;
+    }
+
+    public IEnumerable<Animal> GetAnimales()
+    {
+        return Animales;
     }
 
     public void Validar()

@@ -35,7 +35,7 @@
                                     <option value=""></option>
                                     @foreach (Potrero p in ViewBag.Potreros)
                                     {
-                                        <option value="@p.ID">@p.Descripcion (@p.Animales.Count / @p.Capacidad)</option>
+                                        <option value="@p.ID">@p.Descripcion (@p.GetAnimales().Count() / @p.Capacidad)</option>
                                     }
                                 </select>
                             </div>
