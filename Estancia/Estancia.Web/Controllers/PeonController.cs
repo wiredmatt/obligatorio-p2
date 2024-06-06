@@ -84,7 +84,7 @@ public class PeonController : Controller
         catch (Exception e)
         {
             ViewBag.msg = e.Message;
-            return RedirectToAction("CompletarTarea", new { id = t.ID });
+            return View(tarea);
         }
     }
 

@@ -106,8 +106,7 @@ public class CapatazController : Controller
         Capataz? c = Sistema.Instancia.GetCapatazPorID((int)IDUsuario);
         if (c == null) return Redirect("/");
 
-        IEnumerable<Potrero> Potreros = Sistema.Instancia.GetPotreros();
-        ViewBag.Potreros = Potreros;
+        ViewBag.Potreros = Sistema.Instancia.GetPotreros();
 
         return View();
     }
