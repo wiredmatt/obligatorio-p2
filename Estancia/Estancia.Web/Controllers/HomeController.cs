@@ -19,4 +19,9 @@ public class HomeController : Controller
         if (RolUsuario == "Capataz") return Redirect("/Capataz/Index");
         else return Redirect("/Peon/Index");
     }
+
+    public IActionResult EasterEgg()
+    {
+        return Redirect("https://www.youtube.com/watch?v=-HB5XU18IsU");
+    }
 }
